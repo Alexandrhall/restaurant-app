@@ -36,6 +36,10 @@ app.post("/createbook", async (req, res) => {
   res.send("created book");
 });
 
+app.post("/createJeppe", async (req, res) => {
+  res.send("skapade Jeppe");
+});
+
 app.listen(8000, () => {
   console.log("Live at http://localhost:8000");
 });

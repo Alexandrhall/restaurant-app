@@ -33,6 +33,16 @@ function App() {
       >
         Post book
       </button>
+
+      <button
+        onClick={async () => {
+          axios
+            .post("http://localhost:8000/createJeppe")
+            .then((resp) => console.log(resp.data));
+        }}
+      >
+        Det här är en knapp
+      </button>
     </div>
   );
 }
