@@ -24,6 +24,15 @@ function App() {
       >
         Post
       </button>
+      <button
+        onClick={async () => {
+          axios
+            .post("http://localhost:8000/createbook")
+            .then((resp) => console.log(resp.data));
+        }}
+      >
+        Post book
+      </button>
     </div>
   );
 }
