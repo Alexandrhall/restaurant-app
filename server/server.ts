@@ -35,10 +35,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+// app.use((req, res, next) => {
+//   console.log(
+//     `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
+//   );
+
+//   res.on("finish", () => {});
+//   console.log(
+//     `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
+//   );
+// });
+
 app.get("/", async (req, res) => {
-  await TestModel.create({
-    name: "Test Testerson",
-  });
   res.send("hello there");
 });
 
@@ -50,6 +58,13 @@ app.post("/createbook", async (req, res) => {
   res.send("created book");
 });
 
+app.post("/test", async (req, res) => {
+  await TestModel.create({
+    title: "Bord 1",
+  });
+  res.send("created");
+});
+
 app.listen(8000, () => {
   console.log("Live at http://localhost:8000");
 });
@@ -58,10 +73,10 @@ interface Table {
   _id: ObjectId;
   title: string;
   seats: number;
-  time: number;
+  time: string;
 }
 
 const schema = new mongoose.Schema({
-  name: String,
+  title: String,
 });
-const TestModel = mongoose.model("Table", schema);
+const TestModel = mongoose.model("Table", schema, "restaurant");
