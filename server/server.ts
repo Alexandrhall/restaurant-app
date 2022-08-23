@@ -25,6 +25,9 @@ app.use(cors());
 
 app.get("/", async (req, res) => {
   connectDB();
+  await TestModel.create({
+    name: "Test Testerson",
+  });
   res.send("hello there");
 });
 
@@ -51,14 +54,14 @@ const connectDB = async () => {
   }
 };
 
-interface Book {
+interface Table {
   _id: ObjectId;
   title: string;
-  pages: number;
+  seats: number;
+  time: number;
 }
 
-interface Loan {
-  _id: ObjectId;
-  name: string;
-  book: Book;
-}
+const schema = new mongoose.Schema({
+  name: String,
+});
+const TestModel = mongoose.model("Table", schema);
