@@ -15,17 +15,8 @@ const connectDB = async () => {
   }
 };
 
-// const client: MongoClient = new MongoClient(
-//   "mongodb://localhost:27017/?readPreference=primary"
-// );
-
-// const client2 = mongoose.connect(
-//   "mongodb://localhost:27017/?readPreference=primary"
-// );
-
 const app: Express = express();
 
-// mongoose.createConnection();
 connectDB();
 
 app.use(express.urlencoded({ extended: true }));
@@ -57,11 +48,23 @@ app.post("/createbook", async (req, res) => {
   res.send("created book");
 });
 
+// app.post("/test", async (req, res) => {
+//   await TestModel.create({
+//     name: "Pelle",
+//     phone: 123,
+//     email: "hehe@gmail.com",
+//   });
+//   res.send("created");
+// });
 app.post("/test", async (req, res) => {
   await TestModel.create({
-    title: "Bord 1",
-    seats: 6,
-    time: "18:00",
+    information: {
+      name: "Pelle",
+      phone: 123,
+      email: "hehe@gmail.com",
+    },
+    seats: 3,
+    time: "21:00",
   });
   res.send("created");
 });
@@ -79,7 +82,7 @@ interface ICustomer {
 interface IBookings {
   _id: ObjectId;
   information: ICustomer;
-  persons: number;
+  seats: number;
   time: string;
 }
 
@@ -95,4 +98,4 @@ const bookingSchema = new mongoose.Schema({
   time: String,
 });
 
-const TestModel = mongoose.model("Table", userSchema, "tables");
+const TestModel = mongoose.model("Table", bookingSchema, "bookings");
