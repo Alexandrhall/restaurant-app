@@ -40,7 +40,7 @@ function App() {
             .then((resp) => console.log(resp.data));
         }}
       >
-        create test
+        Create test
       </button>
     </div>
   );

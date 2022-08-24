@@ -1,14 +1,13 @@
-import express from "express";
-import { Express } from "express";
+import express, { Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import mongoose, { ConnectOptions } from "mongoose";
-import mongodb, { MongoClient, ObjectId } from "mongodb";
+import mongoose from "mongoose";
+import { ObjectId } from "mongodb";
 
 const connectDB = async () => {
   try {
     const connect = await mongoose.connect(
-      "mongodb://localhost:27017/?readPreference=primary"
+      "mongodb://localhost:27017/restaurant-app"
     );
     console.log("Database is connected");
   } catch (error: any) {
@@ -61,6 +60,8 @@ app.post("/createbook", async (req, res) => {
 app.post("/test", async (req, res) => {
   await TestModel.create({
     title: "Bord 1",
+    seats: 6,
+    time: "18:00",
   });
   res.send("created");
 });
@@ -69,14 +70,29 @@ app.listen(8000, () => {
   console.log("Live at http://localhost:8000");
 });
 
-interface Table {
+interface ICustomer {
   _id: ObjectId;
-  title: string;
-  seats: number;
+  name: string;
+  phone: number;
+  email: string;
+}
+interface IBookings {
+  _id: ObjectId;
+  information: ICustomer;
+  persons: number;
   time: string;
 }
 
-const schema = new mongoose.Schema({
-  title: String,
+const userSchema = new mongoose.Schema({
+  name: String,
+  phone: Number,
+  email: String,
 });
-const TestModel = mongoose.model("Table", schema, "restaurant");
+
+const bookingSchema = new mongoose.Schema({
+  information: Object,
+  seats: Number,
+  time: String,
+});
+
+const TestModel = mongoose.model("Table", userSchema, "tables");
