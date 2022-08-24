@@ -1,10 +1,17 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home } from "./components/pages/Home";
 
 function App() {
   return (
     <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+        </Routes>
+      </BrowserRouter>
       <h1>Restaurang booking</h1>
       <button
         onClick={async () => {
