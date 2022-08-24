@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
+import Calendar from "react-calendar";
 
 function App() {
+  const [value, onChange] = useState(new Date());
+
+  console.log(value);
+
   return (
     <div className="App">
       <h1>Restaurang booking</h1>
@@ -42,6 +47,7 @@ function App() {
       >
         Create test
       </button>
+      <Calendar onChange={onChange} value={value} />
     </div>
   );
 }
