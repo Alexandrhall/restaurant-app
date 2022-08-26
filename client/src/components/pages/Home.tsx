@@ -5,7 +5,7 @@ import "../../styles/home.scss";
 export const Home = () => {
   return (
     <header>
-      <Navigation></Navigation>
+      {/* <Navigation></Navigation> */}
       <div className="hero-image">
         <div className="hero-text">
           Classic Food With The Taste of Homecooked

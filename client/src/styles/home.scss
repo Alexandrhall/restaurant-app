@@ -13,3 +13,14 @@ html {
   background-size: cover;
   height: 100vh;
 }
+
+.hero-text {
+  text-shadow: 1px 1px 1px #000000;
+  color: white;
+  font-size: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  font-weight: lighter;
+}
