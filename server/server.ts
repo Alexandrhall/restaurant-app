@@ -39,6 +39,10 @@ app.post("/", async (req, res) => {
   res.send("post");
 });
 
+app.post("/booking", async (req, res) => {
+  res.send("post");
+});
+
 app.post("/createbook", async (req, res) => {
   res.send("created book");
 });
