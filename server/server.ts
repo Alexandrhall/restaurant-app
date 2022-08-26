@@ -40,7 +40,7 @@ app.post("/", async (req, res) => {
 });
 
 app.post("/booking", async (req, res) => {
-  res.send("post");
+  res.redirect("http://localhost:3000/booking");
 });
 
 app.post("/createbook", async (req, res) => {
