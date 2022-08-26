@@ -4,7 +4,7 @@ import Calendar from "react-calendar";
 export const Booking = () => {
   const [dateValue, setDateValue] = useState(new Date());
 
-  console.log(dateValue);
+  // console.log(dateValue);
   return (
     <>
       <h1>Booking page</h1>
