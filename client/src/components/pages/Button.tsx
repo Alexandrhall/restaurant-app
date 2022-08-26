@@ -9,8 +9,7 @@ export const Button = () => {
   console.log(dateValue);
 
   return (
-    <div className="App">
-      <h1>Restaurang booking</h1>
+    <>
       <button
         onClick={async () => {
           axios
@@ -48,6 +47,6 @@ export const Button = () => {
         Create test
       </button>
       <Calendar onChange={setDateValue} value={dateValue} />
-    </div>
+    </>
   );
 };

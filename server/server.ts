@@ -2,7 +2,6 @@ import express, { Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
-import { ObjectId } from "mongodb";
 
 const connectDB = async () => {
   try {
@@ -74,19 +73,6 @@ app.post("/test", async (req, res) => {
 app.listen(8000, () => {
   console.log("Live at http://localhost:8000");
 });
-
-interface ICustomer {
-  _id: ObjectId;
-  name: string;
-  phone: number;
-  email: string;
-}
-interface IBookings {
-  _id: ObjectId;
-  information: ICustomer;
-  seats: number;
-  time: string;
-}
 
 const userSchema = new mongoose.Schema({
   name: String,
