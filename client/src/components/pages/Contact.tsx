@@ -19,6 +19,19 @@ export const Contact = () => {
           </form>
         </div>
       </div>
+      <div className="footer">
+        <div className="footer-container">
+          <p>
+            Phone <br></br> 070-865-70-08
+          </p>
+          <p>
+            Email <br></br> restaurant@gmail.com
+          </p>
+          <p>
+            Adress <br></br> Gustavlundsvägen 151D <br></br> 168 80 Bromma
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
