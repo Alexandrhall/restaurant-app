@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
 const connectDB = async () => {
   try {
@@ -47,21 +47,15 @@ app.post("/createbook", async (req, res) => {
   res.send("created book");
 });
 
-// app.post("/test", async (req, res) => {
-//   await TestModel.create({
-//     name: "Pelle",
-//     phone: 123,
-//     email: "hehe@gmail.com",
-//   });
-//   res.send("created");
-// });
 app.post("/test", async (req, res) => {
+  await UserModel.create({
+    name: "Pelle",
+    phone: 123,
+    email: "hehe@gmail.com",
+  });
+  const user = await UserModel.findOne({ name: "Pelle" });
   await TestModel.create({
-    information: {
-      name: "Pelle",
-      phone: 123,
-      email: "hehe@gmail.com",
-    },
+    information: user,
     seats: 3,
     time: "21:00",
   });
@@ -84,4 +78,5 @@ const bookingSchema = new mongoose.Schema({
   time: String,
 });
 
-const TestModel = mongoose.model("", bookingSchema, "bookings");
+const TestModel = mongoose.model("bookings", bookingSchema, "bookings");
+const UserModel = mongoose.model("customer", userSchema, "customers");
