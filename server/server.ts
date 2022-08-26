@@ -29,12 +29,6 @@ app.use((req, res, next) => {
     `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
   );
   next();
-  // res.on("finish", () => {
-  //   console.log(
-  //     `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
-  //   );
-  //   next();
-  // });
 });
 
 app.get("/", async (req, res) => {

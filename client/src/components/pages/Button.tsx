@@ -4,10 +4,6 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 export const Button = () => {
-  const [dateValue, setDateValue] = useState(new Date());
-
-  console.log(dateValue);
-
   return (
     <>
       <button
@@ -46,7 +42,6 @@ export const Button = () => {
       >
         Create test
       </button>
-      <Calendar onChange={setDateValue} value={dateValue} />
     </>
   );
 };
