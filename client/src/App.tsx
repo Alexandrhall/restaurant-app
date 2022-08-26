@@ -4,6 +4,7 @@ import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./components/pages/Home";
 import { About } from "./components/pages/About";
+import { Contact } from "./components/pages/Contact";
 
 function App() {
   return (
