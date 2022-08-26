@@ -1,8 +1,13 @@
 import React from "react";
 import "../../styles/about.scss";
+import { Navigation } from "../Navigation";
 export const About = () => {
   return (
     <div className="box">
+      <Navigation></Navigation>
+      <div className="image-container">
+        <img src="../../assets/Aboutimage.png" alt="" />
+      </div>
       <div className="text">
         <p className="title-text">About Us</p>
         <p className="info-text">
@@ -19,7 +24,6 @@ export const About = () => {
           overwhelming cream.
         </p>
       </div>
-      <div className="image-container"></div>
     </div>
   );
 };
