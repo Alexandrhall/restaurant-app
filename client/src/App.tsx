@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./components/pages/Home";
+import { About } from "./components/pages/About";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/about" element={<About />}></Route>
         </Routes>
       </BrowserRouter>
       <h1>Restaurang booking</h1>
