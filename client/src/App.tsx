@@ -1,48 +1,23 @@
-import React from "react";
 import "./App.css";
-import axios from "axios";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Button } from "./components/pages/Button";
+import { Booking } from "./components/pages/Booking";
+import { Contact } from "./components/pages/Contact";
+import { NotFound } from "./components/NotFound";
+import { Layout } from "./components/Layout";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Restaurang booking</h1>
-      <button
-        onClick={async () => {
-          axios
-            .get("http://localhost:8000")
-            .then((resp) => console.log(resp.data));
-        }}
-      >
-        Fetch
-      </button>
-      <button
-        onClick={async () => {
-          axios
-            .post("http://localhost:8000")
-            .then((resp) => console.log(resp.data));
-        }}
-      >
-        Post
-      </button>
-      <button
-        onClick={async () => {
-          axios
-            .post("http://localhost:8000/createbook")
-            .then((resp) => console.log(resp.data));
-        }}
-      >
-        Post book
-      </button>
-      <button
-        onClick={async () => {
-          axios
-            .post("http://localhost:8000/test")
-            .then((resp) => console.log(resp.data));
-        }}
-      >
-        Create test
-      </button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Button />}></Route>
+          <Route path="/booking" element={<Booking />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

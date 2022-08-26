@@ -1,8 +1,7 @@
 import express, { Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import mongoose from "mongoose";
-import { ObjectId } from "mongodb";
+import mongoose, { ObjectId } from "mongoose";
 
 const connectDB = async () => {
   try {
@@ -25,16 +24,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.use((req, res, next) => {
-//   console.log(
-//     `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
-//   );
-
-//   res.on("finish", () => {});
-//   console.log(
-//     `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
-//   );
-// });
+app.use((req, res, next) => {
+  console.log(
+    `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
+  );
+  next();
+});
 
 app.get("/", async (req, res) => {
   res.send("hello there");
@@ -44,25 +39,23 @@ app.post("/", async (req, res) => {
   res.send("post");
 });
 
+app.post("/booking", async (req, res) => {
+  res.redirect("http://localhost:3000/booking");
+});
+
 app.post("/createbook", async (req, res) => {
   res.send("created book");
 });
 
-// app.post("/test", async (req, res) => {
-//   await TestModel.create({
-//     name: "Pelle",
-//     phone: 123,
-//     email: "hehe@gmail.com",
-//   });
-//   res.send("created");
-// });
 app.post("/test", async (req, res) => {
-  await TestModel.create({
-    information: {
-      name: "Pelle",
-      phone: 123,
-      email: "hehe@gmail.com",
-    },
+  await UserModel.create({
+    name: "Pelle",
+    phone: 123,
+    email: "hehe@gmail.com",
+  });
+  const user = await UserModel.findOne({ name: "Pelle" });
+  await BookModel.create({
+    information: user,
     seats: 3,
     time: "21:00",
   });
@@ -72,19 +65,6 @@ app.post("/test", async (req, res) => {
 app.listen(8000, () => {
   console.log("Live at http://localhost:8000");
 });
-
-interface ICustomer {
-  _id: ObjectId;
-  name: string;
-  phone: number;
-  email: string;
-}
-interface IBookings {
-  _id: ObjectId;
-  information: ICustomer;
-  seats: number;
-  time: string;
-}
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -98,4 +78,5 @@ const bookingSchema = new mongoose.Schema({
   time: String,
 });
 
-const TestModel = mongoose.model("Table", bookingSchema, "bookings");
+const BookModel = mongoose.model("bookings", bookingSchema, "bookings");
+const UserModel = mongoose.model("customer", userSchema, "customers");
