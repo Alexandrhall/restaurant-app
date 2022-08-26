@@ -54,7 +54,7 @@ app.post("/test", async (req, res) => {
     email: "hehe@gmail.com",
   });
   const user = await UserModel.findOne({ name: "Pelle" });
-  await TestModel.create({
+  await BookModel.create({
     information: user,
     seats: 3,
     time: "21:00",
@@ -78,5 +78,5 @@ const bookingSchema = new mongoose.Schema({
   time: String,
 });
 
-const TestModel = mongoose.model("bookings", bookingSchema, "bookings");
+const BookModel = mongoose.model("bookings", bookingSchema, "bookings");
 const UserModel = mongoose.model("customer", userSchema, "customers");
