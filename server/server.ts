@@ -25,16 +25,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.use((req, res, next) => {
-//   console.log(
-//     `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
-//   );
-
-//   res.on("finish", () => {});
-//   console.log(
-//     `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
-//   );
-// });
+app.use((req, res, next) => {
+  console.log(
+    `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
+  );
+  next();
+  // res.on("finish", () => {
+  //   console.log(
+  //     `Method: ${req.method} - URL: ${req.url} - IP ${req.socket.remoteAddress}`
+  //   );
+  //   next();
+  // });
+});
 
 app.get("/", async (req, res) => {
   res.send("hello there");
@@ -98,4 +100,4 @@ const bookingSchema = new mongoose.Schema({
   time: String,
 });
 
-const TestModel = mongoose.model("Table", bookingSchema, "bookings");
+const TestModel = mongoose.model("", bookingSchema, "bookings");
