@@ -23,4 +23,16 @@ html {
   justify-content: center;
   height: 100vh;
   font-weight: lighter;
+  align-items: center;
+}
+
+.book-button {
+  font-size: 18px;
+  background-color: #ff0022;
+  width: 155px;
+  height: 58px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
