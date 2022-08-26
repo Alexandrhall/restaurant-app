@@ -34,3 +34,11 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #db001d;
 }
+
+.footer-container {
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
