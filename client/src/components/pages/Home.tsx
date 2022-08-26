@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigation } from "../Navigation";
+import "../../styles/home.scss";
 
 export const Home = () => {
   return (
