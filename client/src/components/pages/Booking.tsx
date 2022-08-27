@@ -10,7 +10,6 @@ export const Booking = () => {
   );
   const [startDate, setStartDate] = useState(new Date());
   const [calDate, setCalDate] = useState(new Date());
-  const [value, onChange] = useState(new Date());
 
   return (
     <>
