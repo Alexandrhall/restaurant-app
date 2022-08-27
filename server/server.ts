@@ -34,7 +34,42 @@ app.post("/", async (req, res) => {
 app.post("/booking", async (req, res) => {
   console.log(req.body);
 
-  res.redirect("http://localhost:3000/booking");
+  if (
+    await UserModel.findOne({
+      name: req.body.name,
+      phone: req.body.phone,
+      email: req.body.email,
+    })
+  ) {
+    const user = await UserModel.findOne({
+      name: req.body.name,
+      phone: req.body.phone,
+      email: req.body.email,
+    });
+    await BookModel.create({
+      information: user,
+      seats: req.body.seats,
+      time: req.body.date,
+    });
+  } else {
+    await UserModel.create({
+      name: req.body.name,
+      phone: req.body.phone,
+      email: req.body.email,
+    });
+    const user = await UserModel.findOne({
+      name: req.body.name,
+      phone: req.body.phone,
+      email: req.body.email,
+    });
+    await BookModel.create({
+      information: user,
+      seats: req.body.seats,
+      time: req.body.date,
+    });
+
+    res.redirect("http://localhost:3000/booking");
+  }
 });
 
 app.post("/createbook", async (req, res) => {

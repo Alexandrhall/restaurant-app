@@ -9,32 +9,38 @@ export const Booking = () => {
     new Date(setHours(setMinutes(new Date(), 0), 18))
   );
   const [startDate, setStartDate] = useState(new Date());
+  const [calDate, setCalDate] = useState(new Date());
+  const [value, onChange] = useState(new Date());
 
   return (
     <>
       <h1>Booking page</h1>
-      <Calendar onChange={setDateValue} value={dateValue} />
+      {/* <Calendar onChange={setCalDate} value={calDate} /> */}
       {/* <p>{dateValue.toString()}</p> */}
 
-      <DatePicker
-        selected={dateValue}
-        onChange={(date: Date) => setDateValue(date)}
-        showTimeSelect
-        showWeekNumbers
-        timeIntervals={180}
-        timeFormat="HH:mm"
-        includeTimes={[
-          setHours(setMinutes(new Date(), 0), 21),
-          setHours(setMinutes(new Date(), 0), 18),
-        ]}
-        dateFormat={"dd/MM/yyyy HH:mm"}
-        minDate={subDays(startDate, 0)}
-        maxDate={addDays(startDate, 60)}
-      />
-
       <form action="http://localhost:8000/booking" method="post">
+        <DatePicker
+          selected={dateValue}
+          onChange={(date: Date) => setDateValue(date)}
+          showTimeSelect
+          showWeekNumbers
+          timeIntervals={180}
+          timeFormat="HH:mm"
+          popperPlacement="bottom"
+          includeTimes={[
+            setHours(setMinutes(new Date(), 0), 21),
+            setHours(setMinutes(new Date(), 0), 18),
+          ]}
+          dateFormat={"dd/MM/yyyy HH:mm"}
+          minDate={subDays(startDate, 0)}
+          maxDate={addDays(startDate, 60)}
+          name="date"
+        />
         <input type="text" name="name" placeholder="First Name" />
-        <input type="submit" value="submit" />
+        <input type="number" name="phone" placeholder="Phone number" />
+        <input type="email" name="email" placeholder="Email" />
+        <input type="number" name="seats" placeholder="Seats" max={6} min={1} />
+        <input type="submit" value="Submit" />
       </form>
     </>
   );
