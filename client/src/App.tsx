@@ -7,7 +7,6 @@ import { Layout } from "./components/Layout";
 import { Home } from "./components/pages/Home";
 import { Contact } from "./components/pages/Contact";
 import { About } from "./components/pages/About";
-import { Navigation } from "./components/Navigation";
 
 function App() {
   return (

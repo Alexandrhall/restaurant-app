@@ -1,5 +1,4 @@
 import React from "react";
-import { Navigation } from "../Navigation";
 import "../../styles/home.scss";
 import { Button } from "./Button";
 
