@@ -2,15 +2,11 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
+import { setHours, setMinutes, subDays, addDays } from "date-fns";
 
 export const Booking = () => {
   const [dateValue, setDateValue] = useState(new Date());
-  // const [startDate, setStartDate] = useState(new Date());
-  const [startDate, setStartDate] = useState(
-    setHours(setMinutes(new Date(), 0), 18)
-  );
+  const [startDate, setStartDate] = useState(new Date());
 
   return (
     <>
@@ -22,11 +18,16 @@ export const Booking = () => {
         onChange={(date: Date) => setDateValue(date)}
         showTimeSelect
         timeIntervals={180}
+        timeFormat="HH:mm"
         includeTimes={[
           setHours(setMinutes(new Date(), 0), 21),
           setHours(setMinutes(new Date(), 0), 18),
         ]}
+        minTime={setHours(setMinutes(new Date(), 0), 18)}
+        maxTime={setHours(setMinutes(new Date(), 0), 21)}
         dateFormat={"dd/MM/yyyy HH:mm"}
+        minDate={subDays(startDate, 0)}
+        maxDate={addDays(startDate, 60)}
       />
 
       <form action="http://localhost:8000/booking" method="post">
