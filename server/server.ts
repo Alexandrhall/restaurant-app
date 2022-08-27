@@ -32,6 +32,8 @@ app.post("/", async (req, res) => {
 });
 
 app.post("/booking", async (req, res) => {
+  console.log(req.body);
+
   res.redirect("http://localhost:3000/booking");
 });
 
