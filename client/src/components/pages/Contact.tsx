@@ -5,7 +5,7 @@ import { Navigation } from "../Navigation";
 export const Contact = () => {
   return (
     <div className="wrapper">
-      <Navigation></Navigation>
+      {/* <Navigation></Navigation> */}
       <div className="contact">
         <p className="contact-text">Contact</p>
         <div className="contact-form">

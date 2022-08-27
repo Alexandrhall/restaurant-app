@@ -4,7 +4,7 @@ import { Navigation } from "../Navigation";
 export const About = () => {
   return (
     <div className="box">
-      <Navigation></Navigation>
+      {/* <Navigation></Navigation> */}
       <div className="image-container">
         <img src="../../assets/Aboutimage.png" alt="" />
       </div>

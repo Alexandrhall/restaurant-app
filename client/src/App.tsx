@@ -7,13 +7,14 @@ import { Layout } from "./components/Layout";
 import { Home } from "./components/pages/Home";
 import { Contact } from "./components/pages/Contact";
 import { About } from "./components/pages/About";
+import { Navigation } from "./components/Navigation";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}>
-          <Route index element={<Button />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />}></Route>
           <Route path="/booking" element={<Booking />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/about" element={<About />}></Route>
