@@ -9,9 +9,15 @@ export const Layout = () => {
         <div className="logoWrapper"></div>
 
         <nav className="menuWrapper">
-          <Link to={"/"}>Home</Link>
-          <Link to={"/booking"}>Booking</Link>
-          <Link to={"/contact"}>Contact</Link>
+          <Link className="menuText" to={"/"}>
+            Home
+          </Link>
+          <Link className="menuText" to={"/booking"}>
+            Booking
+          </Link>
+          <Link className="menuText" to={"/contact"}>
+            Contact
+          </Link>
         </nav>
       </div>
       <Outlet></Outlet>
