@@ -2,17 +2,9 @@ import express, { Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose, { ObjectId } from "mongoose";
-
-const connectDB = async () => {
-  try {
-    const connect = await mongoose.connect(
-      "mongodb://localhost:27017/restaurant-app"
-    );
-    console.log("Database is connected");
-  } catch (error: any) {
-    console.log(error.message);
-  }
-};
+import UserModel from "./models/Customer";
+import BookModel from "./models/Bookings";
+import { connectDB } from "./services/db";
 
 const app: Express = express();
 
@@ -65,18 +57,3 @@ app.post("/test", async (req, res) => {
 app.listen(8000, () => {
   console.log("Live at http://localhost:8000");
 });
-
-const userSchema = new mongoose.Schema({
-  name: String,
-  phone: Number,
-  email: String,
-});
-
-const bookingSchema = new mongoose.Schema({
-  information: Object,
-  seats: Number,
-  time: String,
-});
-
-const BookModel = mongoose.model("bookings", bookingSchema, "bookings");
-const UserModel = mongoose.model("customer", userSchema, "customers");
