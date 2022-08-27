@@ -1,6 +1,5 @@
 import React from "react";
 import "../../styles/contact.scss";
-import { Navigation } from "../Navigation";
 
 export const Contact = () => {
   return (

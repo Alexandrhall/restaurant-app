@@ -18,6 +18,9 @@ export const Layout = () => {
           <Link className="menuText" to={"/contact"}>
             Contact
           </Link>
+          <Link className="menuText" to={"/about"}>
+            About us
+          </Link>
         </nav>
       </div>
       <Outlet></Outlet>

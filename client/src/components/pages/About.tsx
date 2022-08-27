@@ -1,6 +1,5 @@
 import React from "react";
 import "../../styles/about.scss";
-import { Navigation } from "../Navigation";
 export const About = () => {
   return (
     <div className="box">
