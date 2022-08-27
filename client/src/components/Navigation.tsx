@@ -15,6 +15,9 @@ export const Navigation = () => {
         <Link className="menuText" to={"/contact"}>
           Contact
         </Link>
+        <Link className="menuText" to={"/Booking"}>
+          Booking
+        </Link>
       </div>
     </div>
   );
