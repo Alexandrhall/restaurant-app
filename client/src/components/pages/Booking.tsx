@@ -24,16 +24,19 @@ export const Booking = () => {
           showTimeSelect
           showWeekNumbers
           timeIntervals={180}
+          calendarStartDay={1}
           timeFormat="HH:mm"
           popperPlacement="bottom"
           includeTimes={[
-            setHours(setMinutes(new Date(), 0), 21),
             setHours(setMinutes(new Date(), 0), 18),
+            setHours(setMinutes(new Date(), 0), 21),
           ]}
           dateFormat={"dd/MM/yyyy HH:mm"}
           minDate={subDays(startDate, 0)}
           maxDate={addDays(startDate, 60)}
           name="date"
+          minTime={setHours(setMinutes(new Date(), 0), 18)}
+          maxTime={setHours(setMinutes(new Date(), 0), 21)}
         />
         <input type="text" name="name" placeholder="First Name" />
         <input type="number" name="phone" placeholder="Phone number" />
