@@ -5,7 +5,11 @@ export const About = () => {
     <div className="box">
       {/* <Navigation></Navigation> */}
       <div className="image-container">
-        <img src="../../assets/Aboutimage.png" alt="" />
+        <img
+          className="aboutImage"
+          src="https://usercontent.one/wp/www.mangalturkiskkolgrill.se/wp-content/uploads/2021/01/volkan-vardar-1H30uRC1plc-unsplash.jpg?media=1631447692"
+          alt="A picture of our restaurant"
+        />
       </div>
       <div className="text">
         <p className="title-text">About Us</p>
@@ -13,14 +17,15 @@ export const About = () => {
           Since our modest beginnings in 2005 with a little space in Toronto’s
           stylish Yorkville locale, ‘Organization Name’ ‘s development has been
           enlivened with the energy to cook and serve solid, Indian-roused
-          takeout food. In contrast to other Indian eateries, ‘Organization
-          Name’ was made with the explicit expectation to appear as something
-          else. We realize numerous individuals love Indian sustenance, yet a
-          large number of them loathe or are unconscious of the regularly
-          unfortunate fixings that make run-of-the-mill Indian nourishment taste
-          so great. Our menu highlights things that utilization the sound and
-          fragrant flavors, however, forgets the stuffing ghee, spread, oil, and
-          overwhelming cream.
+          takeout food. <br></br> In contrast to other Indian eateries,
+          ‘Organization Name’ was made with the explicit expectation to appear
+          as something else. <br></br> We realize numerous individuals love
+          Indian sustenance, yet a large number of them loathe or are
+          unconscious of the regularly unfortunate fixings that make
+          run-of-the-mill Indian nourishment taste so great. <br></br> Our menu
+          highlights things that utilization the sound and fragrant flavors,
+          however, forgets the stuffing ghee, spread, oil, and overwhelming
+          cream.
         </p>
       </div>
     </div>

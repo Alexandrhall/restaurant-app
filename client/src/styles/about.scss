@@ -1,15 +1,24 @@
 .text {
-  width: 60%;
   font-weight: lighter;
   font-size: 20px;
 }
 
 .image-container {
-  width: 50%;
+  width: 40%;
+  float: right;
 }
 
-.image {
+.aboutImage {
   width: 331px;
   height: 496px;
-  border: 1px solid white;
+}
+
+.title-text {
+  font-size: 48px;
+}
+
+.info-text {
+  text-align: justify;
+  line-height: 30px;
+  margin-left: 30px;
 }
