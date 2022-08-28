@@ -7,6 +7,13 @@ export const Contact = () => {
       {/* <Navigation></Navigation> */}
       <div className="contact">
         <p className="contact-text">Contact</p>
+        <div className="image-box">
+          <img
+            className="contactImage"
+            src="https://www.homedoo.com/wp-content/uploads/2016/04/AK-A_48_Urban_Garden_32.jpg"
+            alt="A picture of our restaurant"
+          />
+        </div>
         <div className="contact-form">
           <form action="" method="post">
             <input type="text" name="name" placeholder="Your name..." />
