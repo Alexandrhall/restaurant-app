@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
 
 export const Button = () => {
+  const dataVar = {
+    name: "Pellson",
+    age: 34,
+    car: "Tesla",
+  };
+
   return (
     <>
       <button
@@ -26,12 +30,16 @@ export const Button = () => {
       </button>
       <button
         onClick={async () => {
-          axios
-            .post("http://localhost:8000/createbook")
-            .then((resp) => console.log(resp.data));
+          axios({
+            method: "post",
+            url: "http://localhost:8000/create",
+            data: dataVar,
+          }).then((resp) => {
+            console.log(resp.data);
+          });
         }}
       >
-        Post book
+        Create
       </button>
       <button
         onClick={async () => {

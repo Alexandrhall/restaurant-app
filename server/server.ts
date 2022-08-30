@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose, { ObjectId } from "mongoose";
 import UserModel from "./models/Customer";
-import BookModel from "./models/Bookings";
+import BookModel, { IBookings } from "./models/Bookings";
 import { connectDB } from "./services/db";
 
 const app: Express = express();
@@ -34,34 +34,22 @@ app.post("/", async (req, res) => {
 app.post("/booking", async (req, res) => {
   console.log(req.body);
 
-  if (
-    await UserModel.findOne({
-      name: req.body.name,
-      phone: req.body.phone,
-      email: req.body.email,
-    })
-  ) {
-    const user = await UserModel.findOne({
-      name: req.body.name,
-      phone: req.body.phone,
-      email: req.body.email,
-    });
+  const userInfo = {
+    name: req.body.name,
+    phone: req.body.phone,
+    email: req.body.email,
+  };
+
+  if (await UserModel.findOne(userInfo)) {
+    const user = await UserModel.findOne(userInfo);
     await BookModel.create({
       information: user,
       seats: req.body.seats,
       time: req.body.date,
     });
   } else {
-    await UserModel.create({
-      name: req.body.name,
-      phone: req.body.phone,
-      email: req.body.email,
-    });
-    const user = await UserModel.findOne({
-      name: req.body.name,
-      phone: req.body.phone,
-      email: req.body.email,
-    });
+    await UserModel.create(userInfo);
+    const user = await UserModel.findOne(userInfo);
     await BookModel.create({
       information: user,
       seats: req.body.seats,
@@ -72,23 +60,20 @@ app.post("/booking", async (req, res) => {
   }
 });
 
-app.post("/createbook", async (req, res) => {
-  res.send("created book");
+app.post("/create", async (req, res) => {
+  const body = req.body;
+  console.log(body);
+
+  res.send(body);
 });
 
 app.post("/test", async (req, res) => {
-  await UserModel.create({
-    name: "Pelle",
-    phone: 123,
-    email: "hehe@gmail.com",
+  const answer: IBookings[] = await BookModel.find({
+    time: "03/09/2022",
   });
-  const user = await UserModel.findOne({ name: "Pelle" });
-  await BookModel.create({
-    information: user,
-    seats: 3,
-    time: "21:00",
-  });
-  res.send("created");
+  console.log(answer.length);
+
+  res.send(answer);
 });
 
 app.listen(8000, () => {
