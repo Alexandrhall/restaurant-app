@@ -13,6 +13,7 @@
     "@types/react-datepicker": "^4.4.2",
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
+    "mongoose": "^6.5.3",
     "react": "^18.2.0",
     "react-calendar": "^3.7.0",
     "react-datepicker": "^4.8.0",

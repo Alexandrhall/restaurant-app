@@ -2,7 +2,7 @@ import express, { Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose, { ObjectId } from "mongoose";
-import UserModel from "./models/Customer";
+import UserModel, { ICustomer } from "./models/Customer";
 import BookModel, { IBookings } from "./models/Bookings";
 import { connectDB } from "./services/db";
 
@@ -44,16 +44,16 @@ app.post("/booking", async (req, res) => {
     const user = await UserModel.findOne(userInfo);
     await BookModel.create({
       information: user,
-      seats: req.body.seats,
-      time: req.body.date,
+      persons: parseInt(req.body.persons),
+      date: req.body.date,
     });
   } else {
     await UserModel.create(userInfo);
     const user = await UserModel.findOne(userInfo);
     await BookModel.create({
       information: user,
-      seats: req.body.seats,
-      time: req.body.date,
+      persons: parseInt(req.body.persons),
+      date: req.body.date,
     });
 
     res.redirect("http://localhost:3000/booking");
@@ -68,8 +68,10 @@ app.post("/create", async (req, res) => {
 });
 
 app.post("/test", async (req, res) => {
+  console.log(req.body.date);
+
   const answer: IBookings[] = await BookModel.find({
-    time: "03/09/2022",
+    date: req.body.date,
   });
   console.log(answer.length);
 

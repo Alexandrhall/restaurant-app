@@ -4,14 +4,14 @@ import { ICustomer } from "./Customer";
 export interface IBookings {
   _id: ObjectId;
   information: ICustomer;
-  seats: number;
-  time: string;
+  persons: number;
+  date: string;
 }
 
 const bookingSchema = new mongoose.Schema({
   information: Object,
-  seats: Number,
-  time: String,
+  persons: Number,
+  date: String,
 });
 
 const BookModel = mongoose.model("bookings", bookingSchema, "bookings");
