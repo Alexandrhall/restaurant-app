@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose, { ObjectId } from "mongoose";
 
+const adminRoutes = require("./routes/adminRoutes");
+
 const connectDB = async () => {
   try {
     const connect = await mongoose.connect(
