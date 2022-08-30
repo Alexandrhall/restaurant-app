@@ -17,17 +17,19 @@ export const Admin = () => {
         <span className="admin-login-user">Admin</span>
         <div className="admin-login-card">
           <form action="/admin" className="admin-login-form">
+            <label htmlFor="username">Username</label>
             <input
               className="admin-login-input"
               type="text"
               name="username"
-              placeholder="Användarnamn"
+              placeholder="Your Username..."
             ></input>
+            <label htmlFor="password">Password</label>
             <input
               className="admin-login-input"
               type="password"
               name="password"
-              placeholder="Lösenord"
+              placeholder="Your Password..."
             ></input>
             <input
               type="submit"
