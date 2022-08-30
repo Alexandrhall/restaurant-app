@@ -7,6 +7,7 @@ import { Layout } from "./components/Layout";
 import { Home } from "./components/pages/Home";
 import { Contact } from "./components/pages/Contact";
 import { About } from "./components/pages/About";
+import { Admin } from "./components/pages/Admin";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="*" element={<NotFound />}></Route>
+          <Route path="/admin" element={<Admin />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,5 +1,5 @@
 import React from "react";
 
 export const Admin = () => {
-  return <></>;
+  return <>Hej det här är admin sidan</>;
 };
