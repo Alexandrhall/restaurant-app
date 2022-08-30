@@ -12,6 +12,9 @@ export const Home = () => {
           Book a table
         </Link>
       </div>
+      <Link className="login" to={"/admin"}>
+        <div className="login-button">Are you Admin? Login here!</div>
+      </Link>
       <Button></Button>
     </div>
   );
