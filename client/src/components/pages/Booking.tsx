@@ -6,6 +6,7 @@ import { setHours, setMinutes, subDays, addDays } from "date-fns";
 import axios from "axios";
 import { IBookings } from "../../models/IBookings";
 import { ICustomer } from "../../models/ICustomer";
+import { getValue } from "@testing-library/user-event/dist/utils";
 
 export const Booking = () => {
   const [dateValue, setDateValue] = useState(
@@ -15,16 +16,11 @@ export const Booking = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [calDate, setCalDate] = useState<IBookings[]>([]);
 
-  const [timeValue, setTimeValue] = useState(
-    new Date(setHours(setMinutes(new Date(), 0), 18))
-  );
-
   return (
     <>
       <h1>Booking page</h1>
       {/* <Calendar onChange={setCalDate} value={calDate} /> */}
       {/* <p>{dateValue.toString()}</p> */}
-
       <DatePicker
         selected={dateValue}
         onChange={(date: Date) => setDateValue(date)}
@@ -34,19 +30,38 @@ export const Booking = () => {
         calendarStartDay={1}
         // timeFormat="HH:mm"
         popperPlacement="bottom"
-        includeTimes={[
-          setHours(setMinutes(new Date(), 0), 18),
-          setHours(setMinutes(new Date(), 0), 21),
-        ]}
+        // includeTimes={[
+        //   setHours(setMinutes(new Date(), 0), 18),
+        //   setHours(setMinutes(new Date(), 0), 21),
+        // ]}
         // dateFormat={"dd/MM/yyyy"}
         dateFormat={"yyyy-MM-dd"}
         minDate={subDays(startDate, 0)}
         maxDate={addDays(startDate, 60)}
         name="date"
-        minTime={setHours(setMinutes(new Date(), 0), 18)}
-        maxTime={setHours(setMinutes(new Date(), 0), 21)}
+        // minTime={setHours(setMinutes(new Date(), 0), 18)}
+        // maxTime={setHours(setMinutes(new Date(), 0), 21)}
       />
-
+      <input
+        type="radio"
+        name="time"
+        id="18"
+        value={"18:00"}
+        onClick={async (e) => {
+          console.log(e.currentTarget.value);
+        }}
+      />
+      <label htmlFor="18">18:00</label>
+      <input
+        type="radio"
+        name="time"
+        id="21"
+        value={"21:00"}
+        onClick={async (e) => {
+          console.log(e.currentTarget.value);
+        }}
+      />
+      <label htmlFor="21">21:00</label>
       <button
         onClick={async () => {
           axios({
@@ -60,7 +75,6 @@ export const Booking = () => {
       >
         Search
       </button>
-
       {calDate.map((booking) => {
         return (
           <>
@@ -71,7 +85,6 @@ export const Booking = () => {
           </>
         );
       })}
-
       <form action="http://localhost:8000/booking" method="post">
         {/* <DatePicker
           selected={timeValue}

@@ -71,7 +71,7 @@ app.post("/test", async (req, res) => {
   console.log(req.body.date);
 
   const answer: IBookings[] = await BookModel.find({
-    date: req.body.date,
+    date: `${req.body.date} 21:00`,
   });
   console.log(answer.length);
 
