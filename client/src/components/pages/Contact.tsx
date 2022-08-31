@@ -16,13 +16,24 @@ export const Contact = () => {
         </div>
         <div className="contact-form">
           <form action="" method="post">
-            <input type="text" name="name" placeholder="Your name..." />
-            <input type="text" name="email" placeholder="Your email..." />
+            <input
+              className="contact-input"
+              type="text"
+              name="name"
+              placeholder="Your name..."
+            />
+            <input
+              className="contact-input"
+              type="text"
+              name="email"
+              placeholder="Your email..."
+            />
             <textarea
+              className="contact-input"
               name="message"
               placeholder="Write something..."
             ></textarea>
-            <input type="submit" value="Send" />
+            <input className="contact-submit" type="submit" value="Send" />
           </form>
         </div>
       </div>

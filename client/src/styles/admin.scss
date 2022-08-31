@@ -21,6 +21,15 @@
   height: 40px;
 }
 
+.admin-login-btn {
+  background-color: black;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .admin-login-card {
   display: flex;
   flex-direction: column;
