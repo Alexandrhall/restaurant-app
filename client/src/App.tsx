@@ -13,6 +13,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Button />}></Route>
           <Route path="/booking" element={<Booking />}></Route>
+          {/* <Route path="/booking/form" element={<BookingForm />}></Route> */}
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Route>

@@ -6,4 +6,5 @@ export interface IBookings {
   information: ICustomer;
   persons: number;
   date: string;
+  time: string;
 }

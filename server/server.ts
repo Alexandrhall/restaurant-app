@@ -67,13 +67,24 @@ app.post("/create", async (req, res) => {
   res.send(body);
 });
 
-app.post("/test", async (req, res) => {
-  console.log(req.body.date);
+app.post("/getdate", async (req, res) => {
+  console.log(`${req.body.date}`);
 
-  const answer: IBookings[] = await BookModel.find({
-    date: `${req.body.date} 21:00`,
+  const answerEight: IBookings[] = await BookModel.find({
+    date: req.body.date,
+    time: "18:00",
   });
-  console.log(answer.length);
+  const answerTwenty: IBookings[] = await BookModel.find({
+    date: req.body.date,
+    time: "21:00",
+  });
+
+  console.log(answerEight.length + answerTwenty.length);
+
+  const answer: object = {
+    eightTeen: answerEight,
+    twentyOne: answerTwenty,
+  };
 
   res.send(answer);
 });
