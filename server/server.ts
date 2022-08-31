@@ -46,6 +46,7 @@ app.post("/booking", async (req, res) => {
       information: user,
       persons: parseInt(req.body.persons),
       date: req.body.date,
+      time: req.body.time,
     });
   } else {
     await UserModel.create(userInfo);
@@ -54,10 +55,10 @@ app.post("/booking", async (req, res) => {
       information: user,
       persons: parseInt(req.body.persons),
       date: req.body.date,
+      time: req.body.time,
     });
-
-    res.redirect("http://localhost:3000/booking");
   }
+  res.redirect("http://localhost:3000/booking");
 });
 
 app.post("/create", async (req, res) => {
@@ -68,7 +69,7 @@ app.post("/create", async (req, res) => {
 });
 
 app.post("/getdate", async (req, res) => {
-  console.log(`${req.body.date}`);
+  // console.log(`${req.body.date}`);
 
   const answerEight: IBookings[] = await BookModel.find({
     date: req.body.date,
@@ -79,7 +80,7 @@ app.post("/getdate", async (req, res) => {
     time: "21:00",
   });
 
-  console.log(answerEight.length + answerTwenty.length);
+  // console.log(answerEight.length + answerTwenty.length);
 
   const answer: object = {
     eightTeen: answerEight,

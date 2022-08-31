@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -21,21 +21,24 @@ export const Booking = () => {
 
   const [showForm, setShowForm] = useState<boolean>(false);
 
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: "http://localhost:8000/getdate",
+      data: { date: dateValue.toLocaleDateString() },
+    }).then((resp) => {
+      setEightTeen(resp.data.eightTeen);
+      setTwentyOne(resp.data.twentyOne);
+    });
+  }, [dateValue]);
+
   return (
     <>
       <h1>Booking page</h1>
       <Calendar
         onChange={(date: Date) => {
           setDateValue(date);
-
-          // axios({
-          //   method: "post",
-          //   url: "http://localhost:8000/getdate",
-          //   data: { date: dateValue.toLocaleDateString() },
-          // }).then((resp) => {
-          //   setEightTeen(resp.data.eightTeen);
-          //   setTwentyOne(resp.data.twentyOne);
-          // });
+          setShowForm(true);
         }}
         value={dateValue}
         minDate={subDays(startDate, 0)}
@@ -52,9 +55,9 @@ export const Booking = () => {
         maxDate={addDays(startDate, 60)}
         name="date"
       /> */}
-      <button
+      {/* <button
         onClick={async () => {
-          axios({
+          await axios({
             method: "post",
             url: "http://localhost:8000/getdate",
             data: { date: dateValue.toLocaleDateString() },
@@ -66,37 +69,37 @@ export const Booking = () => {
         }}
       >
         Search
-      </button>
-      <div>
-        <input
-          type="radio"
-          name="time"
-          id="18"
-          value={"18:00"}
-          onClick={async (e) => {
-            setTimeValue(e.currentTarget.value);
-          }}
-        />
-        <label htmlFor="18">18:00 ({15 - eightTeen.length} available)</label>
-        <input
-          type="radio"
-          name="time"
-          id="21"
-          value={"21:00"}
-          onClick={async (e) => {
-            setTimeValue(e.currentTarget.value);
-          }}
-        />
-        <label htmlFor="21">21:00 ({15 - twentyOne.length} available)</label>
-      </div>
+      </button> */}
 
-      <div>
-        {showForm ? (
+      {showForm ? (
+        <div>
+          <input
+            type="radio"
+            name="time"
+            id="18"
+            value={"18:00"}
+            onClick={async (e) => {
+              setTimeValue(e.currentTarget.value);
+            }}
+          />
+          <label htmlFor="18">18:00 ({15 - eightTeen.length} available)</label>
+          <input
+            type="radio"
+            name="time"
+            id="21"
+            value={"21:00"}
+            onClick={async (e) => {
+              setTimeValue(e.currentTarget.value);
+            }}
+          />
+          <label htmlFor="21">21:00 ({15 - twentyOne.length} available)</label>
           <BookingForm date={dateValue.toLocaleDateString()} time={timeValue} />
-        ) : (
+        </div>
+      ) : (
+        <div>
           <></>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* <form action="http://localhost:8000/booking" method="post">
         <input type="text" name="name" placeholder="First Name" />
