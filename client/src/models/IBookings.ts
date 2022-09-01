@@ -4,6 +4,7 @@ import { ICustomer } from "./ICustomer";
 export interface IBookings {
   _id: ObjectId;
   information: ICustomer;
-  seats: number;
+  persons: number;
+  date: string;
   time: string;
 }

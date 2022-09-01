@@ -2,19 +2,11 @@ import express, { Express } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose, { ObjectId } from "mongoose";
+import UserModel, { ICustomer } from "./models/Customer";
+import BookModel, { IBookings } from "./models/Bookings";
+import { connectDB } from "./services/db";
 
 const adminRoutes = require("./routes/adminRoutes");
-
-const connectDB = async () => {
-  try {
-    const connect = await mongoose.connect(
-      "mongodb://localhost:27017/restaurant-app"
-    );
-    console.log("Database is connected");
-  } catch (error: any) {
-    console.log(error.message);
-  }
-};
 
 const app: Express = express();
 
@@ -42,43 +34,64 @@ app.post("/", async (req, res) => {
 });
 
 app.post("/booking", async (req, res) => {
+  console.log(req.body);
+
+  const userInfo = {
+    name: req.body.name,
+    phone: req.body.phone,
+    email: req.body.email,
+  };
+
+  if (await UserModel.findOne(userInfo)) {
+    const user = await UserModel.findOne(userInfo);
+    await BookModel.create({
+      information: user,
+      persons: parseInt(req.body.persons),
+      date: req.body.date,
+      time: req.body.time,
+    });
+  } else {
+    await UserModel.create(userInfo);
+    const user = await UserModel.findOne(userInfo);
+    await BookModel.create({
+      information: user,
+      persons: parseInt(req.body.persons),
+      date: req.body.date,
+      time: req.body.time,
+    });
+  }
   res.redirect("http://localhost:3000/booking");
 });
 
-app.post("/createbook", async (req, res) => {
-  res.send("created book");
+app.post("/create", async (req, res) => {
+  const body = req.body;
+  console.log(body);
+
+  res.send(body);
 });
 
-app.post("/test", async (req, res) => {
-  await UserModel.create({
-    name: "Pelle",
-    phone: 123,
-    email: "hehe@gmail.com",
+app.post("/getdate", async (req, res) => {
+  // console.log(`${req.body.date}`);
+
+  const answerEight: IBookings[] = await BookModel.find({
+    date: req.body.date,
+    time: "18:00",
   });
-  const user = await UserModel.findOne({ name: "Pelle" });
-  await BookModel.create({
-    information: user,
-    seats: 3,
+  const answerTwenty: IBookings[] = await BookModel.find({
+    date: req.body.date,
     time: "21:00",
   });
-  res.send("created");
+
+  // console.log(answerEight.length + answerTwenty.length);
+
+  const answer: object = {
+    eightTeen: answerEight,
+    twentyOne: answerTwenty,
+  };
+
+  res.send(answer);
 });
 
 app.listen(8000, () => {
   console.log("Live at http://localhost:8000");
 });
-
-const userSchema = new mongoose.Schema({
-  name: String,
-  phone: Number,
-  email: String,
-});
-
-const bookingSchema = new mongoose.Schema({
-  information: Object,
-  seats: Number,
-  time: String,
-});
-
-const BookModel = mongoose.model("bookings", bookingSchema, "bookings");
-const UserModel = mongoose.model("customer", userSchema, "customers");
