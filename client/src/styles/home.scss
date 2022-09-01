@@ -1,0 +1,54 @@
+body,
+html {
+  margin: 0;
+  scroll-behavior: smooth;
+  font-family: Helvetica;
+}
+
+.hero-image {
+  background-image: url("../assets/Background.png");
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-text {
+  text-shadow: 1px 1px 1px #000000;
+  color: white;
+  font-size: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  font-weight: lighter;
+  align-items: center;
+}
+
+.login {
+  text-decoration: none;
+}
+
+.login-button {
+  color: white;
+  text-align: left;
+  font-size: 18px;
+}
+
+.book-button {
+  font-size: 18px;
+  background-color: #ff0022;
+  width: 155px;
+  height: 58px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  margin-top: 30px;
+
+  &:hover {
+    background-color: #db001d;
+  }
+}
