@@ -6,8 +6,6 @@ import UserModel, { ICustomer } from "./models/Customer";
 import BookModel, { IBookings } from "./models/Bookings";
 import { connectDB } from "./services/db";
 
-const adminRoutes = require("./routes/adminRoutes");
-
 const app: Express = express();
 
 connectDB();

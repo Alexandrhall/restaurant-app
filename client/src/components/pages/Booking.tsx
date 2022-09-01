@@ -11,9 +11,9 @@ import { BookingForm } from "../BookingForm";
 import "react-calendar/dist/Calendar.css";
 
 export const Booking = () => {
-  const [dateValue, setDateValue] = useState(new Date());
+  const [dateValue, setDateValue] = useState<Date>(new Date());
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date>(new Date());
   const [eightTeen, setEightTeen] = useState<IBookings[]>([]);
   const [twentyOne, setTwentyOne] = useState<IBookings[]>([]);
 
