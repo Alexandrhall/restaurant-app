@@ -8,6 +8,7 @@ import { Home } from "./components/pages/Home";
 import { Contact } from "./components/pages/Contact";
 import { About } from "./components/pages/About";
 import { Admin } from "./components/pages/Admin";
+import { LoaderTest } from "./components/pages/LoaderTest";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="*" element={<NotFound />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
+          <Route path="/loadertest" element={<LoaderTest />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
