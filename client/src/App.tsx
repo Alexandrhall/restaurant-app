@@ -1,6 +1,5 @@
-import "./App.css";
+import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Button } from "./components/pages/Button";
 import { Booking } from "./components/pages/Booking";
 import { NotFound } from "./components/NotFound";
 import { Layout } from "./components/Layout";
