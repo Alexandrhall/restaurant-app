@@ -5,6 +5,7 @@ import mongoose, { ObjectId } from "mongoose";
 import UserModel, { ICustomer } from "./models/Customer";
 import BookModel, { IBookings } from "./models/Bookings";
 import { connectDB } from "./services/db";
+import adminRouter from "./routes/adminRoutes";
 
 const app: Express = express();
 
@@ -22,6 +23,8 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use("/admin", adminRouter);
 
 app.get("/", async (req, res) => {
   res.send("hello there");

@@ -1,3 +1,3 @@
 export const Adminbookings = () => {
-  return <></>;
+  return <>Funkar den här jäveln?</>;
 };

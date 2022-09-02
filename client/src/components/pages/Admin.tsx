@@ -3,15 +3,6 @@ import { IBookings } from "../../models/IBookings";
 import "../../styles/admin.scss";
 
 export const Admin = () => {
-  // const [bookings, setBookings] = useState<IBookings[]>([]);
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8000/admin/")
-  //     .then((response) => response.json())
-  //     .then((data) => setBookings(data));
-  //   console.log(setBookings);
-  // }),
-  //   [];
   return (
     <div className="admin-image">
       <div className="admin-login-cnt">
