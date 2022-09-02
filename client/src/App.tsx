@@ -7,6 +7,7 @@ import { Home } from "./components/pages/Home";
 import { Contact } from "./components/pages/Contact";
 import { About } from "./components/pages/About";
 import { Admin } from "./components/pages/Admin";
+import { Adminbookings } from "./components/pages/Adminbookings";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="*" element={<NotFound />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
+          <Route path="/admin/bookings" element={<Adminbookings />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
