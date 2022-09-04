@@ -35,7 +35,7 @@ export const Adminbookings = () => {
                   <p className="booking-info">{booking.time}</p>
                   <p className="booking-info">{booking.information.phone}</p>
                   <div className="editBtn">
-                    <Link to={"/admin/bookings" + booking._id}>Edit</Link>
+                    <Link to={"/admin/bookings/" + booking._id}>Edit</Link>
                   </div>
                 </div>
               );

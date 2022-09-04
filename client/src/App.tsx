@@ -8,6 +8,7 @@ import { Contact } from "./components/pages/Contact";
 import { About } from "./components/pages/About";
 import { Admin } from "./components/pages/Admin";
 import { Adminbookings } from "./components/pages/Adminbookings";
+import { SingleBooking } from "./components/pages/SingleBooking";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="*" element={<NotFound />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
           <Route path="/admin/bookings" element={<Adminbookings />}></Route>
+          <Route path="/admin/bookings/:id" element={<SingleBooking />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
