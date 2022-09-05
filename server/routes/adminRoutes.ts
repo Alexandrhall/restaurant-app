@@ -20,4 +20,10 @@ adminRouter.get("/bookings/:id", async (req, res) => {
   }
 });
 
+adminRouter.delete("/bookings/:id/delete", async (req, res) => {
+  const id = req.params.id;
+  const deletedBooking = await BookModel.findByIdAndDelete(id);
+  res.send(deletedBooking);
+});
+
 export default adminRouter;

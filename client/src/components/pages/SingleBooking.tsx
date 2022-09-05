@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import { ObjectId } from "mongoose";
 export const SingleBooking = () => {
@@ -22,6 +22,8 @@ export const SingleBooking = () => {
 
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch("http://localhost:8000/admin/bookings/" + id)
       .then((response) => response.json())
@@ -29,11 +31,20 @@ export const SingleBooking = () => {
     console.log(singleBooking);
   }, []);
 
+  const deleteBooking = () => {
+    fetch("http://localhost:8080/admin/bookings/" + id + "/delete", {
+      method: `DELETE`,
+    }).then(() => navigate("/admin/bookings"));
+  };
+
   return (
     <>
       <p>{singleBooking?.information.name}</p>
       <p>{singleBooking?.information.email}</p>
       <p>{singleBooking?.date}</p>
+      <div className="delete-button" onClick={deleteBooking}>
+        Delete Booking
+      </div>
     </>
   );
 };

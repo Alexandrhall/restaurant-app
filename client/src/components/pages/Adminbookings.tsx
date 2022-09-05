@@ -29,13 +29,19 @@ export const Adminbookings = () => {
                 <div className="single-booking">
                   <p className="booking-info">{booking.date}</p>
                   <p className="booking-info">
-                    {booking.information.name} {booking.information.email}
+                    {booking.information.name} <br></br>
+                    {booking.information.email}
                   </p>
                   <p className="booking-info">{booking.persons}</p>
                   <p className="booking-info">{booking.time}</p>
                   <p className="booking-info">{booking.information.phone}</p>
-                  <div className="editBtn">
-                    <Link to={"/admin/bookings/" + booking._id}>Edit</Link>
+                  <div className="editBtn-cnt">
+                    <Link
+                      className="editBtn"
+                      to={"/admin/bookings/" + booking._id}
+                    >
+                      Edit
+                    </Link>
                   </div>
                 </div>
               );
