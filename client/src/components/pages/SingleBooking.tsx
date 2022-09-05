@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
+import "../../styles/singlebooking.scss";
 import { ObjectId } from "mongoose";
 export const SingleBooking = () => {
   //   const [singleBooking, setSingleBooking] = useState<IBookings>({
@@ -39,11 +40,31 @@ export const SingleBooking = () => {
 
   return (
     <>
-      <p>{singleBooking?.information.name}</p>
-      <p>{singleBooking?.information.email}</p>
-      <p>{singleBooking?.date}</p>
-      <div className="delete-button" onClick={deleteBooking}>
-        Delete Booking
+      <div className="background">
+        <div className="single-booking-cnt">
+          <div className="single-booking-card">
+            <p>Customer Name:</p>
+            <p className="single-booking-info">
+              {singleBooking?.information.name}
+            </p>
+            <p>Customer Email:</p>
+            <p className="single-booking-info">
+              {singleBooking?.information.email}
+            </p>
+            <p>Customer Phone:</p>
+            <p className="single-booking-info">
+              {singleBooking?.information.phone}
+            </p>
+            <p>Datebooked:</p>
+            <p className="single-booking-info">{singleBooking?.date}</p>
+            <div className="button-container">
+              <div className="delete-button" onClick={deleteBooking}>
+                Delete
+              </div>
+              <div className="edit-button">Edit</div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
