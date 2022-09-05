@@ -11,7 +11,7 @@ export const Contact = () => {
           <img
             className="contactImage"
             src="https://www.homedoo.com/wp-content/uploads/2016/04/AK-A_48_Urban_Garden_32.jpg"
-            alt="A picture of our restaurant"
+            alt="our restaurant"
           />
         </div>
         <div className="contact-form">

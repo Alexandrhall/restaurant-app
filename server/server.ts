@@ -34,14 +34,14 @@ app.post("/", async (req, res) => {
 app.post("/booking", async (req, res) => {
   console.log(req.body);
 
-  const userInfo = {
+  const userInfo: object = {
     name: req.body.name,
     phone: req.body.phone,
     email: req.body.email,
   };
 
   if (await UserModel.findOne(userInfo)) {
-    const user = await UserModel.findOne(userInfo);
+    const user: mongoose.Document | null = await UserModel.findOne(userInfo);
     await BookModel.create({
       information: user,
       persons: parseInt(req.body.persons),
@@ -50,7 +50,7 @@ app.post("/booking", async (req, res) => {
     });
   } else {
     await UserModel.create(userInfo);
-    const user = await UserModel.findOne(userInfo);
+    const user: mongoose.Document | null = await UserModel.findOne(userInfo);
     await BookModel.create({
       information: user,
       persons: parseInt(req.body.persons),
@@ -58,7 +58,8 @@ app.post("/booking", async (req, res) => {
       time: req.body.time,
     });
   }
-  res.redirect("http://localhost:3000/booking");
+  // res.redirect("http://localhost:3000/booking");
+  res.status(200);
 });
 
 app.post("/create", async (req, res) => {

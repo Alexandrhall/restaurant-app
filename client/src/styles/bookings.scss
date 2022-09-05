@@ -1,0 +1,21 @@
+.react-calendar {
+  margin: 0 auto;
+  margin-top: 20px;
+  color: #282c34;
+  border-radius: 10px;
+}
+
+.react-calendar__navigation {
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}

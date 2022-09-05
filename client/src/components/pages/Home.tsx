@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
-import { Button } from "./Button";
+// import { Button } from "./Button";
 
 export const Home = () => {
   return (
@@ -15,7 +15,7 @@ export const Home = () => {
       <Link className="login" to={"/admin"}>
         <div className="login-button">Are you Admin? Login here!</div>
       </Link>
-      <Button></Button>
+      {/* <Button></Button> */}
     </div>
   );
 };
