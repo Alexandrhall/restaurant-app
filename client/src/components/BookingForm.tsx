@@ -1,7 +1,5 @@
 import axios from "axios";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-// import axios from "axios";
 import validator from "validator";
 import { IValidate } from "../models/IValidate";
 import { validateUsername } from "../validate/validate";
@@ -18,6 +16,16 @@ export const BookingForm = (props: IBookFormProps) => {
   const [personsVal, setPersonsVal] = useState<number>(1);
 
   const [errObject, setErrObject] = useState<IValidate>({});
+
+  const [sendData, setSendData] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (Object.keys(errObject).length === 0) {
+      setSendData(true);
+    } else {
+      setSendData(false);
+    }
+  });
 
   return (
     <>
@@ -62,59 +70,6 @@ export const BookingForm = (props: IBookFormProps) => {
           setPersonsVal(parseInt(number.target.value))
         }
       />
-      {/* <input
-        type="submit"
-        value="Submit"
-        onSubmit={() => {
-          if (validator.isEmail(emailVal) === false) {
-            setErrObject((prevState) => ({
-              ...prevState,
-              emailErr: "Email is incorect",
-            }));
-          }
-          if (validateUsername(nameVal) === false || nameVal.length < 4) {
-            setErrObject((prevState) => ({
-              ...prevState,
-              usernameErr: "Username is incorect",
-            }));
-          }
-          if (validator.isMobilePhone(phoneVal, "sv-SE") === false) {
-            setErrObject((prevState) => ({
-              ...prevState,
-              phoneErr: "Phone number is incorrect",
-            }));
-          }
-          if (props.time === "") {
-            setErrObject((prevState) => ({
-              ...prevState,
-              timeErr: "Time is incorrect",
-            }));
-          }
-          if (props.date === "") {
-            setErrObject((prevState) => ({
-              ...prevState,
-              dateErr: "Date is incorrect",
-            }));
-          }
-
-          if (Object.keys(errObject).length === 0) {
-            axios({
-              method: "post",
-              url: "http://localhost:8000/booking",
-              data: {
-                name: nameVal,
-                phone: phoneVal,
-                email: emailVal,
-                date: props.date,
-                time: props.time,
-                persons: personsVal,
-              },
-            }).then((resp) => {});
-          } else {
-            console.log(errObject);
-          }
-        }}
-      /> */}
 
       {errObject && (
         <div className="error">
@@ -170,7 +125,7 @@ export const BookingForm = (props: IBookFormProps) => {
             delete errObject.dateErr;
           }
 
-          if (Object.keys(errObject).length === 0) {
+          if (sendData === true) {
             axios({
               method: "post",
               url: "http://localhost:8000/booking",
@@ -185,6 +140,7 @@ export const BookingForm = (props: IBookFormProps) => {
             }).then((resp) => {});
           } else {
             console.log(errObject);
+            console.log(sendData);
           }
         }}
       >
