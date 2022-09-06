@@ -59,7 +59,7 @@ app.post("/booking", async (req, res) => {
     });
   }
   // res.redirect("http://localhost:3000/booking");
-  res.status(200);
+  res.send("crated booking");
 });
 
 app.post("/create", async (req, res) => {

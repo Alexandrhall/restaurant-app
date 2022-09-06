@@ -1,7 +1,7 @@
 import axios from "axios";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import validator from "validator";
-import { IValidate } from "../models/IValidate";
+import { IvalChange, IValidate } from "../models/IValidate";
 import { validateUsername } from "../validate/validate";
 
 interface IBookFormProps {
@@ -10,55 +10,69 @@ interface IBookFormProps {
 }
 
 export const BookingForm = (props: IBookFormProps) => {
-  const [nameVal, setNameVal] = useState<string>("");
-  const [phoneVal, setPhoneVal] = useState<string>("");
-  const [emailVal, setEmailVal] = useState<string>("");
-  const [personsVal, setPersonsVal] = useState<number>(1);
+  const initalState = {
+    name: "",
+    phone: "",
+    email: "",
+    persons: 1,
+  };
 
-  const [errObject, setErrObject] = useState<IValidate>({});
+  const [valState, setValState] = useState<IvalChange>(initalState);
+
+  const [errObject, setErrObject] = useState<IValidate>({
+    emailErr: "",
+    usernameErr: "",
+    phoneErr: "",
+    timeErr: "",
+    dateErr: "",
+  });
 
   const [sendData, setSendData] = useState<boolean>(false);
+  const [showErr, setShowErr] = useState<boolean>(false);
 
-  const handleClick = () => {
-    if (validator.isEmail(emailVal) === false || emailVal === "") {
+  const valOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValState((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const valFormTest = useCallback(() => {
+    if (validator.isEmail(valState.email) === false) {
       setErrObject((prevState) => ({
         ...prevState,
         emailErr: "Email is incorect",
       }));
     } else {
-      delete errObject.emailErr;
-      // let temp: IValidate = { ...errObject };
-      // delete temp.emailErr;
-      // setErrObject(temp);
+      setErrObject((current) => {
+        let temp = { ...current };
+        delete temp.emailErr;
+        return temp;
+      });
     }
-    if (
-      validateUsername(nameVal) === false ||
-      nameVal.length < 4 ||
-      nameVal === ""
-    ) {
+    if (validateUsername(valState.name) === false || valState.name.length < 4) {
       setErrObject((prevState) => ({
         ...prevState,
         usernameErr: "Username is incorect",
       }));
     } else {
-      delete errObject.usernameErr;
-      // let temp: IValidate = { ...errObject };
-      // delete temp.usernameErr;
-      // setErrObject(temp);
+      setErrObject((current) => {
+        let temp = { ...current };
+        delete temp.usernameErr;
+        return temp;
+      });
     }
-    if (
-      validator.isMobilePhone(phoneVal, "sv-SE") === false ||
-      phoneVal === ""
-    ) {
+    if (validator.isMobilePhone(valState.phone, "sv-SE") === false) {
       setErrObject((prevState) => ({
         ...prevState,
         phoneErr: "Phone number is incorrect",
       }));
     } else {
-      delete errObject.phoneErr;
-      // let temp: IValidate = { ...errObject };
-      // delete temp.phoneErr;
-      // setErrObject(temp);
+      setErrObject((current) => {
+        let temp = { ...current };
+        delete temp["phoneErr"];
+        return temp;
+      });
     }
     if (props.time === "") {
       setErrObject((prevState) => ({
@@ -66,10 +80,11 @@ export const BookingForm = (props: IBookFormProps) => {
         timeErr: "Time is incorrect",
       }));
     } else {
-      delete errObject.timeErr;
-      // let temp: IValidate = { ...errObject };
-      // delete temp.timeErr;
-      // setErrObject(temp);
+      setErrObject((current) => {
+        let temp = { ...current };
+        delete temp.timeErr;
+        return temp;
+      });
     }
     if (props.date === "") {
       setErrObject((prevState) => ({
@@ -77,33 +92,20 @@ export const BookingForm = (props: IBookFormProps) => {
         dateErr: "Date is incorrect",
       }));
     } else {
-      delete errObject.dateErr;
-      // let temp: IValidate = { ...errObject };
-      // delete temp.dateErr;
-      // setErrObject(temp);
+      setErrObject((current) => {
+        let temp = { ...current };
+        delete temp.dateErr;
+        return temp;
+      });
     }
+  }, [valState, errObject, props]);
 
-    if (sendData === true) {
-      axios({
-        method: "post",
-        url: "http://localhost:8000/booking",
-        data: {
-          name: nameVal,
-          phone: phoneVal,
-          email: emailVal,
-          date: props.date,
-          time: props.time,
-          persons: personsVal,
-        },
-      }).then((resp) => {});
-    } else {
-      console.log(errObject);
-      console.log(sendData);
-    }
-  };
+  useEffect(() => {
+    valFormTest();
+  }, [valState, props]);
 
-  const sendForm = async () => {
-    if (Object.keys(errObject).length === 0) {
+  const bolTest = () => {
+    if (Object.keys(errObject).length < 1) {
       setSendData(true);
     } else {
       setSendData(false);
@@ -111,12 +113,31 @@ export const BookingForm = (props: IBookFormProps) => {
   };
 
   useEffect(() => {
-    if (Object.keys(errObject).length === 0) {
-      setSendData(true);
-    } else {
-      setSendData(false);
-    }
+    bolTest();
   });
+
+  const sendForm = () => {
+    if (sendData === true) {
+      axios({
+        method: "post",
+        url: "http://localhost:8000/booking",
+        data: {
+          name: valState.name,
+          phone: valState.phone,
+          email: valState.email,
+          date: props.date,
+          time: props.time,
+          persons: valState.persons,
+        },
+      }).then((resp) => {
+        setValState({ ...initalState });
+      });
+    } else {
+      console.log(errObject);
+      console.log(Object.keys(errObject).length);
+      // console.log(sendData);
+    }
+  };
 
   return (
     <>
@@ -127,28 +148,31 @@ export const BookingForm = (props: IBookFormProps) => {
         type="text"
         name="name"
         placeholder="First Name"
-        value={nameVal}
-        onChange={(name: ChangeEvent<HTMLInputElement>) =>
-          setNameVal(name.target.value)
-        }
+        value={valState.name}
+        // onChange={(name: ChangeEvent<HTMLInputElement>) =>
+        //   setNameVal(name.target.value)
+        // }
+        onChange={valOnChange}
       />
       <input
         type="number"
         name="phone"
         placeholder="Phone number"
-        value={phoneVal}
-        onChange={(number: ChangeEvent<HTMLInputElement>) =>
-          setPhoneVal(number.target.value)
-        }
+        value={valState.phone}
+        // onChange={(number: ChangeEvent<HTMLInputElement>) =>
+        //   setPhoneVal(number.target.value)
+        // }
+        onChange={valOnChange}
       />
       <input
         type="email"
         name="email"
         placeholder="Email"
-        value={emailVal}
-        onChange={(email: ChangeEvent<HTMLInputElement>) =>
-          setEmailVal(email.target.value)
-        }
+        value={valState.email}
+        // onChange={(email: ChangeEvent<HTMLInputElement>) =>
+        //   setEmailVal(email.target.value)
+        // }
+        onChange={valOnChange}
       />
       <input
         type="number"
@@ -156,91 +180,27 @@ export const BookingForm = (props: IBookFormProps) => {
         placeholder="Persons"
         max={6}
         min={1}
-        value={personsVal}
-        onChange={(number: ChangeEvent<HTMLInputElement>) =>
-          setPersonsVal(parseInt(number.target.value))
-        }
+        value={valState.persons}
+        // onChange={(number: ChangeEvent<HTMLInputElement>) =>
+        //   setPersonsVal(parseInt(number.target.value))
+        // }
+        onChange={valOnChange}
       />
 
-      {errObject && (
+      {showErr && (
         <div className="error">
           <p>{errObject.usernameErr}</p>
           <p>{errObject.emailErr}</p>
           <p>{errObject.phoneErr}</p>
           <p>{errObject.timeErr}</p>
+          <p>{sendData.toString()}</p>
         </div>
       )}
 
-      {/* <button
-        onClick={() => {
-          if (validator.isEmail(emailVal) === false) {
-            setErrObject((prevState) => ({
-              ...prevState,
-              emailErr: "Email is incorect",
-            }));
-          } else {
-            let temp: IValidate = { ...errObject };
-            delete temp.emailErr;
-            setErrObject(temp);
-          }
-          if (validateUsername(nameVal) === false || nameVal.length < 4) {
-            setErrObject((prevState) => ({
-              ...prevState,
-              usernameErr: "Username is incorect",
-            }));
-          } else {
-            delete errObject.usernameErr;
-          }
-          if (validator.isMobilePhone(phoneVal, "sv-SE") === false) {
-            setErrObject((prevState) => ({
-              ...prevState,
-              phoneErr: "Phone number is incorrect",
-            }));
-          } else {
-            delete errObject.phoneErr;
-          }
-          if (props.time === "") {
-            setErrObject((prevState) => ({
-              ...prevState,
-              timeErr: "Time is incorrect",
-            }));
-          } else {
-            delete errObject.timeErr;
-          }
-          if (props.date === "") {
-            setErrObject((prevState) => ({
-              ...prevState,
-              dateErr: "Date is incorrect",
-            }));
-          } else {
-            delete errObject.dateErr;
-          }
-
-          if (sendData === true) {
-            axios({
-              method: "post",
-              url: "http://localhost:8000/booking",
-              data: {
-                name: nameVal,
-                phone: phoneVal,
-                email: emailVal,
-                date: props.date,
-                time: props.time,
-                persons: personsVal,
-              },
-            }).then((resp) => {});
-          } else {
-            console.log(errObject);
-            console.log(sendData);
-          }
-        }}
-      >
-        Submit
-      </button> */}
       <button
         onClick={() => {
-          handleClick();
-          // await sendForm();
+          sendForm();
+          setShowErr(true);
         }}
       >
         Submit
