@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import "../../styles/singlebooking.scss";
 import { ObjectId } from "mongoose";
+import axios from "axios";
 export const SingleBooking = () => {
   //   const [singleBooking, setSingleBooking] = useState<IBookings>({
   //     _id: ObjectId(),
@@ -33,9 +34,9 @@ export const SingleBooking = () => {
   }, []);
 
   const deleteBooking = () => {
-    fetch("http://localhost:8080/admin/bookings/" + id + "/delete", {
-      method: `DELETE`,
-    }).then(() => navigate("/admin/bookings"));
+    axios
+      .delete("http://localhost:8000/admin/bookings/" + id + "/delete")
+      .then(() => navigate("/admin/bookings"));
   };
 
   return (

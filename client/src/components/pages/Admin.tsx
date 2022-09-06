@@ -25,7 +25,7 @@ export const Admin = () => {
             ></input>
             <input
               type="submit"
-              value="Logga in"
+              value="Login"
               className="admin-login-btn"
             ></input>
           </form>
