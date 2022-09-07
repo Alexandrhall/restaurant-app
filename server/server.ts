@@ -33,7 +33,7 @@ contactEmail.verify((err) => {
   if (err) {
     console.log(err);
   } else {
-    console.log("Ready to Send");
+    console.log("Ready to send email");
   }
 });
 
@@ -45,13 +45,6 @@ app.get("/booking/:id", async (req, res) => {
 
 app.post("/booking", async (req, res) => {
   console.log(req.body);
-
-  let mail = {
-    from: "",
-    to: "",
-    subject: "",
-    text: "",
-  };
 
   const userInfo: object = {
     name: req.body.name,
