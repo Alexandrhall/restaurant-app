@@ -68,7 +68,10 @@ export const SingleBooking = () => {
               <div className="delete-button" onClick={deleteBooking}>
                 Delete
               </div>
-              <Link className="edit-button" to={"/admin/bookings/:id/edit"}>
+              <Link
+                className="edit-button"
+                to={"/admin/bookings/" + id + "/edit"}
+              >
                 Edit
               </Link>
             </div>
