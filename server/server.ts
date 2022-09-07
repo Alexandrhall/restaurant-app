@@ -71,7 +71,8 @@ app.post("/booking", async (req, res) => {
       from: "Restaurant 10",
       to: answer.information.email,
       subject: "Confirmed booking",
-      text: "Hello thank you for your booking",
+      text: `Hello ${answer.information.name} thank you for your booking
+        You are welcome ${answer?.date} at ${answer?.time}`,
     };
 
     contactEmail.sendMail(mail, (err) => {
