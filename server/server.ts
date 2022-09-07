@@ -4,7 +4,7 @@ import cors from "cors";
 import mongoose, { ObjectId } from "mongoose";
 import UserModel, { ICustomer } from "./models/Customer";
 import BookModel, { IBookings } from "./models/Bookings";
-import { connectDB } from "./services/db";
+import { connectDB, authInfo } from "./services/db";
 import nodemailer from "nodemailer";
 
 const app: Express = express();
@@ -26,10 +26,7 @@ app.use((req, res, next) => {
 
 const contactEmail = nodemailer.createTransport({
   service: "gmail",
-  auth: {
-    user: "group10restaurant@gmail.com",
-    pass: "bzggdjinvtuqaysc",
-  },
+  auth: authInfo,
 });
 
 contactEmail.verify((err) => {
