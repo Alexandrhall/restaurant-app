@@ -33,12 +33,5 @@ export const Admin = () => {
         </div>
       </div>
     </div>
-
-    // Kanske kan använda det här sen
-    // <div className="listWrapper">
-    //   {bookings.map((booking) => {
-    //     return <div>{booking.time}</div>;
-    //   })}
-    // </div>
   );
 };

@@ -57,8 +57,13 @@ export const SingleBooking = () => {
             <p className="single-booking-info">
               {singleBooking?.information.phone}
             </p>
-            <p>Datebooked:</p>
-            <p className="single-booking-info">{singleBooking?.date}</p>
+            <p>Date & Time booked:</p>
+            <p className="single-booking-info">
+              {singleBooking?.time} <br></br>
+              {singleBooking?.date}
+            </p>
+            <p>Number of people:</p>
+            <p className="single-booking-info">{singleBooking?.persons}</p>
             <div className="button-container">
               <div className="delete-button" onClick={deleteBooking}>
                 Delete

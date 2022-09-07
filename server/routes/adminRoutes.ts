@@ -26,4 +26,16 @@ adminRouter.delete("/bookings/:id/delete", async (req, res) => {
   res.send(deletedBooking);
 });
 
+adminRouter.get("/bookings/:id/edit", async (req, res) => {
+  const id = req.params.id;
+  const editBooking = {
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    date: req.body.date,
+  };
+
+  await BookModel.updateOne({ _id: id }, { $set: editBooking });
+});
+
 export default adminRouter;
