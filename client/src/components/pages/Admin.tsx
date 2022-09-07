@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { IBookings } from "../../models/IBookings";
+// import React, { useEffect, useState } from "react";
+// import { IBookings } from "../../models/IBookings";
 import "../../styles/admin.scss";
 
 export const Admin = () => {

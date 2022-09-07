@@ -8,3 +8,16 @@ export interface IBookings {
   date: string;
   time: string;
 }
+
+export interface IBookingAnswer {
+  _id: string;
+  information: {
+    _id: string;
+    name: string;
+    phone: number;
+    email: string;
+  };
+  persons: number;
+  date: string;
+  time: string;
+}

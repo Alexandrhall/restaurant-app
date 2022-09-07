@@ -8,7 +8,7 @@ export const About = () => {
         <img
           className="aboutImage"
           src="https://usercontent.one/wp/www.mangalturkiskkolgrill.se/wp-content/uploads/2021/01/volkan-vardar-1H30uRC1plc-unsplash.jpg?media=1631447692"
-          alt="A picture of our restaurant"
+          alt="our restaurant"
         />
       </div>
       <div className="text">
