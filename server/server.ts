@@ -5,6 +5,8 @@ import mongoose, { ObjectId } from "mongoose";
 import UserModel, { ICustomer } from "./models/Customer";
 import BookModel, { IBookings } from "./models/Bookings";
 import { connectDB } from "./services/db";
+import nodemailer from "nodemailer";
+import SendmailTransport from "nodemailer/lib/sendmail-transport";
 
 const app: Express = express();
 
@@ -23,16 +25,37 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", async (req, res) => {
-  res.send("hello there");
+const contactEmail = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "group10restaurant@gmail.com",
+    pass: "bzggdjinvtuqaysc",
+  },
 });
 
-app.post("/", async (req, res) => {
-  res.send("post");
+contactEmail.verify((err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Ready to Send");
+  }
+});
+
+app.get("/booking/:id", async (req, res) => {
+  const answer = await BookModel.findById(req.params.id);
+
+  res.send(answer);
 });
 
 app.post("/booking", async (req, res) => {
   console.log(req.body);
+
+  let mail = {
+    from: "",
+    to: "",
+    subject: "",
+    text: "",
+  };
 
   const userInfo: object = {
     name: req.body.name,
@@ -42,36 +65,43 @@ app.post("/booking", async (req, res) => {
 
   if (await UserModel.findOne(userInfo)) {
     const user: mongoose.Document | null = await UserModel.findOne(userInfo);
-    await BookModel.create({
+    const answer = await BookModel.create({
       information: user,
       persons: parseInt(req.body.persons),
       date: req.body.date,
       time: req.body.time,
     });
+    // .then({
+    //   mail = {
+    //     from: "Restaurant 10",
+    //     to: "jespersimonlind@gmail.com",
+    //     subject: "Confirmed booking",
+    //     text: "Hello thank you for your booking",
+    //   };
+
+    //   contactEmail.sendMail(mail, (err) => {
+    //     if (err) {
+    //       res.json({ status: "Error" });
+    //     } else {
+    //       res.json({ status: "Sent" });
+    //     }
+    //   })
+    // });
+    res.send(answer);
   } else {
     await UserModel.create(userInfo);
     const user: mongoose.Document | null = await UserModel.findOne(userInfo);
-    await BookModel.create({
+    const answer = await BookModel.create({
       information: user,
       persons: parseInt(req.body.persons),
       date: req.body.date,
       time: req.body.time,
     });
+    res.send(answer);
   }
-  // res.redirect("http://localhost:3000/booking");
-  res.send("crated booking");
-});
-
-app.post("/create", async (req, res) => {
-  const body = req.body;
-  console.log(body);
-
-  res.send(body);
 });
 
 app.post("/getdate", async (req, res) => {
-  // console.log(`${req.body.date}`);
-
   const answerEight: IBookings[] = await BookModel.find({
     date: req.body.date,
     time: "18:00",
@@ -81,14 +111,31 @@ app.post("/getdate", async (req, res) => {
     time: "21:00",
   });
 
-  // console.log(answerEight.length + answerTwenty.length);
-
   const answer: object = {
     eightTeen: answerEight,
     twentyOne: answerTwenty,
   };
 
   res.send(answer);
+});
+
+app.post("/booking/email/:id", async (req, res) => {
+  const answer = await BookModel.findById(req.params.id);
+
+  const mail = {
+    from: "Restaurant 10",
+    to: "jespersimonlind@gmail.com",
+    subject: "Confirmed booking",
+    text: "Hello thank you for your booking",
+  };
+
+  contactEmail.sendMail(mail, (err) => {
+    if (err) {
+      res.json({ status: "Error" });
+    } else {
+      res.json({ status: "Sent" });
+    }
+  });
 });
 
 app.listen(8000, () => {

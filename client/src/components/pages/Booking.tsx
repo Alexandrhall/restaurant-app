@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
-// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { subDays, addDays } from "date-fns";
 import axios from "axios";
@@ -11,15 +10,10 @@ import "../../styles/bookings.scss";
 
 export const Booking = () => {
   const [dateValue, setDateValue] = useState<Date>(new Date());
-
-  // const [startDate, setStartDate] = useState<Date>(new Date());
   const [eightTeen, setEightTeen] = useState<IBookings[]>([]);
   const [twentyOne, setTwentyOne] = useState<IBookings[]>([]);
-
   const [timeValue, setTimeValue] = useState<string>("");
-
   const [showForm, setShowForm] = useState<boolean>(false);
-
   const startDate: Date = new Date();
 
   const renderRadioHtml = () => {
@@ -34,7 +28,7 @@ export const Booking = () => {
             name="time"
             id="18"
             value={"18:00"}
-            checked={false}
+            disabled
             onClick={async (e) => {
               setTimeValue("");
             }}
@@ -67,7 +61,7 @@ export const Booking = () => {
             name="time"
             id="21"
             value={"21:00"}
-            checked={false}
+            disabled
             onClick={async (e) => {
               setTimeValue("");
             }}
@@ -106,7 +100,7 @@ export const Booking = () => {
     axios({
       method: "post",
       url: "http://localhost:8000/getdate",
-      data: { date: dateValue.toLocaleDateString() },
+      data: { date: dateValue.toLocaleDateString("sv-SE") },
     }).then((resp) => {
       setEightTeen(resp.data.eightTeen);
       setTwentyOne(resp.data.twentyOne);
@@ -132,7 +126,7 @@ export const Booking = () => {
           <div>{renderRadioHtml()}</div>
           <div>
             <BookingForm
-              date={dateValue.toLocaleDateString()}
+              date={dateValue.toLocaleDateString("sv-SE")}
               time={timeValue}
             />
           </div>

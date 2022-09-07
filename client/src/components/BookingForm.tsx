@@ -1,6 +1,8 @@
 import axios from "axios";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import validator from "validator";
+import { IBookingAnswer } from "../models/IBookings";
 import { IvalChange, IValidate } from "../models/IValidate";
 import { validateUsername } from "../validate/validate";
 
@@ -29,6 +31,21 @@ export const BookingForm = (props: IBookFormProps) => {
 
   const [sendData, setSendData] = useState<boolean>(false);
   const [showErr, setShowErr] = useState<boolean>(false);
+
+  const [answerObj, setAnswerObj] = useState<IBookingAnswer>({
+    _id: "",
+    information: {
+      _id: "",
+      name: "",
+      phone: NaN,
+      email: "",
+    },
+    persons: NaN,
+    date: "",
+    time: "",
+  });
+
+  const navigate = useNavigate();
 
   const valOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValState((prevState) => ({
@@ -98,11 +115,11 @@ export const BookingForm = (props: IBookFormProps) => {
         return temp;
       });
     }
-  }, [valState, errObject, props]);
+  }, [valState, props]);
 
   useEffect(() => {
     valFormTest();
-  }, [valState, props]);
+  }, [valState, props, valFormTest]);
 
   const bolTest = () => {
     if (Object.keys(errObject).length < 1) {
@@ -116,9 +133,9 @@ export const BookingForm = (props: IBookFormProps) => {
     bolTest();
   });
 
-  const sendForm = () => {
+  const sendForm = async () => {
     if (sendData === true) {
-      axios({
+      await axios({
         method: "post",
         url: "http://localhost:8000/booking",
         data: {
@@ -131,6 +148,14 @@ export const BookingForm = (props: IBookFormProps) => {
         },
       }).then((resp) => {
         setValState({ ...initalState });
+        setAnswerObj({
+          _id: resp.data._id,
+          information: resp.data.information,
+          persons: resp.data.persons,
+          date: resp.data.date,
+          time: resp.data.time,
+        });
+        // navigate("/booking/confirm/" + answerObj._id);
       });
     } else {
       console.log(errObject);
@@ -139,9 +164,14 @@ export const BookingForm = (props: IBookFormProps) => {
     }
   };
 
+  useEffect(() => {
+    if (answerObj._id === "") return;
+
+    navigate("/booking/confirm/" + answerObj._id);
+  }, [answerObj, navigate]);
+
   return (
     <>
-      {/* <form action="http://localhost:8000/booking" method="post"></form> */}
       <input type="text" name="time" value={props.time} readOnly />
       <input type="text" name="date" value={props.date} readOnly />
       <input
@@ -149,9 +179,6 @@ export const BookingForm = (props: IBookFormProps) => {
         name="name"
         placeholder="First Name"
         value={valState.name}
-        // onChange={(name: ChangeEvent<HTMLInputElement>) =>
-        //   setNameVal(name.target.value)
-        // }
         onChange={valOnChange}
       />
       <input
@@ -159,9 +186,6 @@ export const BookingForm = (props: IBookFormProps) => {
         name="phone"
         placeholder="Phone number"
         value={valState.phone}
-        // onChange={(number: ChangeEvent<HTMLInputElement>) =>
-        //   setPhoneVal(number.target.value)
-        // }
         onChange={valOnChange}
       />
       <input
@@ -169,9 +193,6 @@ export const BookingForm = (props: IBookFormProps) => {
         name="email"
         placeholder="Email"
         value={valState.email}
-        // onChange={(email: ChangeEvent<HTMLInputElement>) =>
-        //   setEmailVal(email.target.value)
-        // }
         onChange={valOnChange}
       />
       <input
@@ -181,9 +202,6 @@ export const BookingForm = (props: IBookFormProps) => {
         max={6}
         min={1}
         value={valState.persons}
-        // onChange={(number: ChangeEvent<HTMLInputElement>) =>
-        //   setPersonsVal(parseInt(number.target.value))
-        // }
         onChange={valOnChange}
       />
 
@@ -198,8 +216,8 @@ export const BookingForm = (props: IBookFormProps) => {
       )}
 
       <button
-        onClick={() => {
-          sendForm();
+        onClick={async () => {
+          await sendForm();
           setShowErr(true);
         }}
       >
