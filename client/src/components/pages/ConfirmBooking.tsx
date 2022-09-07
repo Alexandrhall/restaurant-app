@@ -15,10 +15,12 @@ export const ConfirmBooking = () => {
 
   return (
     <>
-      <h1>Thank you for your booking!</h1>
-      <p>{objData?.information.name}</p>
-      <p>{`You are welcome ${objData?.date} at ${objData?.time}`}</p>
-      <p>{`We have sent an confirmation email to ${objData?.information.email}`}</p>
+      <h1 className="welcomeMsg">Thank you for your booking!</h1>
+      <div className="bookingInfo">
+        <p>{objData?.information.name}</p>
+        <p>{`You are welcome ${objData?.date} at ${objData?.time}`}</p>
+        <p>{`We have sent an confirmation email to ${objData?.information.email}`}</p>
+      </div>
     </>
   );
 };

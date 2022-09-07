@@ -4,6 +4,7 @@ export interface IValidate {
   phoneErr?: string;
   timeErr?: string;
   dateErr?: string;
+  personErr?: string;
 }
 
 export interface IvalChange {

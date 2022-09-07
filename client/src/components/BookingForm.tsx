@@ -115,6 +115,18 @@ export const BookingForm = (props: IBookFormProps) => {
         return temp;
       });
     }
+    if (valState.persons < 1 || valState.persons > 6) {
+      setErrObject((prevState) => ({
+        ...prevState,
+        personErr: "Persons is incorrect",
+      }));
+    } else {
+      setErrObject((current) => {
+        let temp = { ...current };
+        delete temp.personErr;
+        return temp;
+      });
+    }
   }, [valState, props]);
 
   useEffect(() => {
@@ -133,9 +145,9 @@ export const BookingForm = (props: IBookFormProps) => {
     bolTest();
   });
 
-  const sendForm = async () => {
+  const sendForm = () => {
     if (sendData === true) {
-      await axios({
+      axios({
         method: "post",
         url: "http://localhost:8000/booking",
         data: {
@@ -210,13 +222,15 @@ export const BookingForm = (props: IBookFormProps) => {
           <p>{errObject.emailErr}</p>
           <p>{errObject.phoneErr}</p>
           <p>{errObject.timeErr}</p>
+          <p>{errObject.personErr}</p>
           <p>{sendData.toString()}</p>
         </div>
       )}
 
       <button
-        onClick={async () => {
-          await sendForm();
+        className="bookingBut"
+        onClick={() => {
+          sendForm();
           setShowErr(true);
         }}
       >
