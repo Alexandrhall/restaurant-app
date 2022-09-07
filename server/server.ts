@@ -6,7 +6,6 @@ import UserModel, { ICustomer } from "./models/Customer";
 import BookModel, { IBookings } from "./models/Bookings";
 import { connectDB } from "./services/db";
 import nodemailer from "nodemailer";
-import SendmailTransport from "nodemailer/lib/sendmail-transport";
 
 const app: Express = express();
 
@@ -71,22 +70,20 @@ app.post("/booking", async (req, res) => {
       date: req.body.date,
       time: req.body.time,
     });
-    // .then({
-    //   mail = {
-    //     from: "Restaurant 10",
-    //     to: "jespersimonlind@gmail.com",
-    //     subject: "Confirmed booking",
-    //     text: "Hello thank you for your booking",
-    //   };
+    const mail = {
+      from: "Restaurant 10",
+      to: answer.information.email,
+      subject: "Confirmed booking",
+      text: "Hello thank you for your booking",
+    };
 
-    //   contactEmail.sendMail(mail, (err) => {
-    //     if (err) {
-    //       res.json({ status: "Error" });
-    //     } else {
-    //       res.json({ status: "Sent" });
-    //     }
-    //   })
-    // });
+    contactEmail.sendMail(mail, (err) => {
+      if (err) {
+        res.json({ status: "Error" });
+      } else {
+        res.json({ status: "Sent" });
+      }
+    });
     res.send(answer);
   } else {
     await UserModel.create(userInfo);
@@ -96,6 +93,20 @@ app.post("/booking", async (req, res) => {
       persons: parseInt(req.body.persons),
       date: req.body.date,
       time: req.body.time,
+    });
+    const mail = {
+      from: "Restaurant 10",
+      to: answer.information.email,
+      subject: "Confirmed booking",
+      text: "Hello thank you for your booking",
+    };
+
+    contactEmail.sendMail(mail, (err) => {
+      if (err) {
+        res.json({ status: "Error" });
+      } else {
+        res.json({ status: "Sent" });
+      }
     });
     res.send(answer);
   }
@@ -117,25 +128,6 @@ app.post("/getdate", async (req, res) => {
   };
 
   res.send(answer);
-});
-
-app.post("/booking/email/:id", async (req, res) => {
-  const answer = await BookModel.findById(req.params.id);
-
-  const mail = {
-    from: "Restaurant 10",
-    to: "jespersimonlind@gmail.com",
-    subject: "Confirmed booking",
-    text: "Hello thank you for your booking",
-  };
-
-  contactEmail.sendMail(mail, (err) => {
-    if (err) {
-      res.json({ status: "Error" });
-    } else {
-      res.json({ status: "Sent" });
-    }
-  });
 });
 
 app.listen(8000, () => {

@@ -155,7 +155,6 @@ export const BookingForm = (props: IBookFormProps) => {
           date: resp.data.date,
           time: resp.data.time,
         });
-        // navigate("/booking/confirm/" + answerObj._id);
       });
     } else {
       console.log(errObject);
