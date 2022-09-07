@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import "../../styles/admin.scss";
 
@@ -23,11 +24,11 @@ export const Admin = () => {
               name="password"
               placeholder="Your Password..."
             ></input>
-            <input
-              type="submit"
-              value="Login"
-              className="admin-login-btn"
-            ></input>
+            <div className="login-button-container">
+              <Link className="admin-login-btn" to={"/admin/bookings"}>
+                Login
+              </Link>
+            </div>
           </form>
         </div>
       </div>

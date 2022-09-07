@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import "../../styles/singlebooking.scss";
 import { ObjectId } from "mongoose";
 import axios from "axios";
+import { Booking } from "./Booking";
 export const SingleBooking = () => {
   //   const [singleBooking, setSingleBooking] = useState<IBookings>({
   //     _id: ObjectId(),
@@ -62,7 +63,9 @@ export const SingleBooking = () => {
               <div className="delete-button" onClick={deleteBooking}>
                 Delete
               </div>
-              <div className="edit-button">Edit</div>
+              <Link className="edit-button" to={"/admin/bookings/:id/edit"}>
+                Edit
+              </Link>
             </div>
           </div>
         </div>
