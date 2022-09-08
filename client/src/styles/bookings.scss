@@ -11,7 +11,7 @@
   background-image: url("../assets/Adminimage.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 900px;
 }
 
 .react-calendar__navigation {
@@ -67,6 +67,7 @@ input {
     font-size: 12pt;
     color: red;
     font-weight: lighter;
+    margin-top: 0;
   }
   div label {
     display: block;

@@ -13,7 +13,6 @@ export const Booking = () => {
   const [eightTeen, setEightTeen] = useState<IBookings[]>([]);
   const [twentyOne, setTwentyOne] = useState<IBookings[]>([]);
   const [timeValue, setTimeValue] = useState<string>("");
-  const [showForm, setShowForm] = useState<boolean>(false);
   const startDate: Date = new Date();
 
   const renderRadioHtml = () => {
@@ -119,7 +118,6 @@ export const Booking = () => {
           <Calendar
             onChange={(date: Date) => {
               setDateValue(date);
-              setShowForm(true);
               setTimeValue("");
             }}
             value={dateValue}
@@ -135,20 +133,6 @@ export const Booking = () => {
             />
           </div>
         </div>
-
-        {/* {showForm ? (
-          <>
-            <div className="radioBut">{renderRadioHtml()}</div>
-            <div className="formWrap">
-              <BookingForm
-                date={dateValue.toLocaleDateString("sv-SE")}
-                time={timeValue}
-              />
-            </div>
-          </>
-        ) : (
-          <></>
-        )} */}
       </div>
     </>
   );
