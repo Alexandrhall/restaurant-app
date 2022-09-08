@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { FormEvent, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import "../../styles/editbooking.scss";
 export const AdminEditBooking = () => {
@@ -9,11 +9,19 @@ export const AdminEditBooking = () => {
   const params = useParams();
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch("http://localhost:8000/admin/bookings/" + id)
       .then((response) => response.json())
       .then((data) => setSingleBooking(data));
   }, []);
+
+  const editBooking = () => {
+    axios
+      .put("http://localhost:8000/admin/bookings/" + id + "/edit")
+      .then(() => navigate("/admin/bookings"));
+  };
 
   return (
     <div className="background">
@@ -76,9 +84,9 @@ export const AdminEditBooking = () => {
               <Link className="back-btn" to={"/admin/bookings"}>
                 Back
               </Link>
-              <Link className="save-btn" to={"/admin/bookings"}>
+              <div className="save-btn" onClick={editBooking}>
                 Save
-              </Link>
+              </div>
             </div>
           </form>
         </div>
