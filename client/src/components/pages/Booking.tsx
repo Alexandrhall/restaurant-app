@@ -13,7 +13,6 @@ export const Booking = () => {
   const [eightTeen, setEightTeen] = useState<IBookings[]>([]);
   const [twentyOne, setTwentyOne] = useState<IBookings[]>([]);
   const [timeValue, setTimeValue] = useState<string>("");
-  const [showForm, setShowForm] = useState<boolean>(false);
   const startDate: Date = new Date();
 
   const renderRadioHtml = () => {
@@ -33,7 +32,9 @@ export const Booking = () => {
               setTimeValue("");
             }}
           />
-          <label htmlFor="18">18:00 is fullbooked</label>
+          <label className="fullBook" htmlFor="18">
+            18:00 is fullbooked
+          </label>
         </>
       );
     } else {
@@ -66,7 +67,9 @@ export const Booking = () => {
               setTimeValue("");
             }}
           />
-          <label htmlFor="21">21:00 is fullbooked</label>
+          <label className="fullBook" htmlFor="21">
+            21:00 is fullbooked
+          </label>
         </>
       );
     } else {
@@ -109,31 +112,28 @@ export const Booking = () => {
 
   return (
     <>
-      <h1>Booking page</h1>
-      <Calendar
-        onChange={(date: Date) => {
-          setDateValue(date);
-          setShowForm(true);
-          setTimeValue("");
-        }}
-        value={dateValue}
-        minDate={subDays(startDate, 0)}
-        maxDate={addDays(startDate, 60)}
-      />
+      <div className="bookBack">
+        <h1>Booking page</h1>
+        <div className="bookWrap">
+          <Calendar
+            onChange={(date: Date) => {
+              setDateValue(date);
+              setTimeValue("");
+            }}
+            value={dateValue}
+            minDate={subDays(startDate, 0)}
+            maxDate={addDays(startDate, 60)}
+          />
 
-      {showForm ? (
-        <>
-          <div>{renderRadioHtml()}</div>
-          <div>
+          <div className="radioBut">{renderRadioHtml()}</div>
+          <div className="formWrap">
             <BookingForm
               date={dateValue.toLocaleDateString("sv-SE")}
               time={timeValue}
             />
           </div>
-        </>
-      ) : (
-        <></>
-      )}
+        </div>
+      </div>
     </>
   );
 };

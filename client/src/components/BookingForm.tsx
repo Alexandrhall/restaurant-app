@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { NULL } from "sass";
 import validator from "validator";
 import { IBookingAnswer } from "../models/IBookings";
 import { IvalChange, IValidate } from "../models/IValidate";
@@ -16,7 +17,7 @@ export const BookingForm = (props: IBookFormProps) => {
     name: "",
     phone: "",
     email: "",
-    persons: 1,
+    persons: 0,
   };
 
   const [valState, setValState] = useState<IvalChange>(initalState);
@@ -169,8 +170,9 @@ export const BookingForm = (props: IBookFormProps) => {
         });
       });
     } else {
-      console.log(errObject);
-      console.log(Object.keys(errObject).length);
+      return;
+      // console.log(errObject);
+      // console.log(Object.keys(errObject).length);
       // console.log(sendData);
     }
   };
@@ -183,59 +185,151 @@ export const BookingForm = (props: IBookFormProps) => {
 
   return (
     <>
-      <input type="text" name="time" value={props.time} readOnly />
-      <input type="text" name="date" value={props.date} readOnly />
-      <input
-        type="text"
-        name="name"
-        placeholder="First Name"
-        value={valState.name}
-        onChange={valOnChange}
-      />
-      <input
-        type="number"
-        name="phone"
-        placeholder="Phone number"
-        value={valState.phone}
-        onChange={valOnChange}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={valState.email}
-        onChange={valOnChange}
-      />
-      <input
-        type="number"
-        name="persons"
-        placeholder="Persons"
-        max={6}
-        min={1}
-        value={valState.persons}
-        onChange={valOnChange}
-      />
+      {showErr ? (
+        <>
+          <div>
+            <label htmlFor="time">Time</label>
+            <input
+              type="text"
+              name="time"
+              id="time"
+              placeholder="Time"
+              value={props.time}
+              readOnly
+            />
+            <p>{errObject.timeErr}</p>
+          </div>
+          <div>
+            <label htmlFor="date">Date</label>
+            <input type="text" name="date" value={props.date} readOnly />
+            <p>{errObject.dateErr}</p>
+          </div>
+          <div>
+            <label htmlFor="persons">Persons</label>
+            <input
+              type="number"
+              name="persons"
+              placeholder="Persons"
+              max={6}
+              min={1}
+              value={valState.persons}
+              onChange={valOnChange}
+            />
+            <p>{errObject.personErr}</p>
+          </div>
+          <div>
+            <label htmlFor="persons">Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={valState.name}
+              onChange={valOnChange}
+            />
+            <p>{errObject.usernameErr}</p>
+          </div>
+          <div>
+            <label htmlFor="phone">Phone number</label>
+            <input
+              type="number"
+              name="phone"
+              placeholder="Phone number"
+              value={valState.phone}
+              onChange={valOnChange}
+            />
+            <p>{errObject.phoneErr}</p>
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={valState.email}
+              onChange={valOnChange}
+            />
+            <p>{errObject.emailErr}</p>
+          </div>
 
-      {showErr && (
-        <div className="error">
-          <p>{errObject.usernameErr}</p>
-          <p>{errObject.emailErr}</p>
-          <p>{errObject.phoneErr}</p>
-          <p>{errObject.timeErr}</p>
-          <p>{errObject.personErr}</p>
-          <p>{sendData.toString()}</p>
-        </div>
+          <button
+            className="bookingBut"
+            onClick={() => {
+              sendForm();
+              setShowErr(true);
+            }}
+          >
+            Submit
+          </button>
+        </>
+      ) : (
+        <>
+          <div>
+            <label htmlFor="time">Time</label>
+            <input
+              type="text"
+              name="time"
+              placeholder="Time"
+              value={props.time}
+              readOnly
+            />
+          </div>
+          <div>
+            <label htmlFor="date">Date</label>
+            <input type="text" name="date" value={props.date} readOnly />
+          </div>
+          <div>
+            <label htmlFor="persons">Persons</label>
+            <input
+              type="number"
+              name="persons"
+              placeholder="Persons"
+              max={6}
+              min={1}
+              value={valState.persons}
+              onChange={valOnChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="persons">Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={valState.name}
+              onChange={valOnChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="persons">Phone number</label>
+            <input
+              type="number"
+              name="phone"
+              placeholder="Phone number"
+              value={valState.phone}
+              onChange={valOnChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={valState.email}
+              onChange={valOnChange}
+            />
+          </div>
+          <button
+            className="bookingBut"
+            onClick={() => {
+              sendForm();
+              setShowErr(true);
+            }}
+          >
+            Submit
+          </button>
+        </>
       )}
-
-      <button
-        className="bookingBut"
-        onClick={() => {
-          sendForm();
-          setShowErr(true);
-        }}
-      >
-        Submit
-      </button>
     </>
   );
 };

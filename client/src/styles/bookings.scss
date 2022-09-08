@@ -1,8 +1,17 @@
 .react-calendar {
-  margin: 0 auto;
   margin-top: 20px;
+  margin-bottom: 50px;
   color: #282c34;
   border-radius: 10px;
+  order: 2;
+  font-family: "Segoe UI";
+}
+
+.bookBack {
+  background-image: url("../assets/Adminimage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
 .react-calendar__navigation {
@@ -29,4 +38,76 @@ input {
   margin-bottom: 16px;
   resize: vertical;
   cursor: pointer;
+}
+
+.formWrap {
+  display: flex;
+  margin: 0 auto;
+  order: 3;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 60%;
+  align-items: center;
+  height: 250px;
+  max-width: 1040px;
+  input {
+    width: 300px;
+  }
+  button {
+    width: 50%;
+    align-items: flex-end;
+    color: white;
+    background-color: red;
+    border: 0;
+  }
+  div {
+    height: 130px;
+  }
+  div p {
+    font-size: 12pt;
+    color: red;
+    font-weight: lighter;
+    margin-top: 0;
+  }
+  div label {
+    display: block;
+    font-size: 10pt;
+  }
+}
+
+.bookWrap {
+  display: flex;
+  flex-wrap: wrap;
+  .radioBut {
+    display: flex;
+    width: 55%;
+    justify-content: flex-end;
+    align-items: center;
+    order: 1;
+    padding-right: 50px;
+    label {
+      color: white;
+      font-family: "Segoe UI";
+    }
+  }
+}
+
+input[type="radio"] {
+  transform: scale(2.3);
+  height: 7%;
+  margin: 10px;
+  &:after {
+    background-color: red;
+  }
+  &:after:checked {
+    background-color: orange;
+  }
+}
+
+label {
+  font-size: 1.7rem;
+}
+
+.fullBook {
+  text-decoration: line-through;
 }
