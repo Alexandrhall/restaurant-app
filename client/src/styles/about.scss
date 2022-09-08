@@ -1,36 +1,31 @@
-.text {
-  font-weight: lighter;
-  font-size: 20px;
-}
+.about-cnt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
 
-.image-container {
-  width: 40%;
-  float: right;
-}
-
-.aboutImage {
-  width: 331px;
-  height: 496px;
-}
-
-.title-text {
-  font-size: 48px;
-}
-
-.info-text {
-  text-align: justify;
-  line-height: 30px;
-  margin-left: 30px;
-}
-
-@media only screen and (max-width: 768px) {
-  .image-container {
-    width: 100%;
-    float: none;
+  .about-title {
+    font-size: 36px;
+    font-weight: lighter;
   }
 
-  .info-text {
-    margin-left: 15px;
-    margin-right: 15px;
+  .about-card {
+    background-color: rgba(255, 255, 255, 0.15);
+    width: 710px;
+    height: 560px;
+    border-radius: 20px;
+  }
+
+  .about-text {
+    font-size: 20px;
+    font-weight: lighter;
+    text-align: left;
+    margin-left: 10px;
+  }
+
+  .opening-hours {
+    font-size: 20px;
+    font-weight: lighter;
   }
 }
