@@ -64,8 +64,17 @@ app.post("/booking", async (req, res) => {
       from: "Restaurant 10",
       to: answer.information.email,
       subject: "Confirmed booking",
-      text: `Hello ${answer.information.name} thank you for your booking
-        You are welcome ${answer?.date} at ${answer?.time}`,
+      html: `<h1> Hello ${answer.information.name}</h1>
+      <p>Thank you for making a reservation.</p>
+      <p>We are expecting you on [${answer.date}/${answer.time}]
+      <p> Your booking information:</p>
+      <p> Name: ${answer.information.name}</p>
+      <p> Phone: ${answer.information.phone}</p>
+      <p> Email: ${answer.information.email}</p>
+      <p> People: ${answer.persons}</p>
+      <p> We here at 10s hope you enjoy your stay!</p>
+      <p> If you have any questions please contact us on the information below.<p>
+      <p> Phone: 070-865-70-08 Email: group10restaurant@gmail.com</p>`,
     };
 
     contactEmail.sendMail(mail, (err) => {
@@ -88,8 +97,18 @@ app.post("/booking", async (req, res) => {
     const mail = {
       from: "Restaurant 10",
       to: answer.information.email,
-      subject: "Confirmed booking",
-      text: "Hello thank you for your booking",
+      subject: "Confirmed booking at 10s",
+      html: `<h1> Hello ${answer.information.name}</h1>
+      <p>Thank you for making a reservation.</p>
+      <p>We are expecting you on [${answer.date}/${answer.time}]
+      <p> Your booking information:</p>
+      <p> Name: ${answer.information.name}</p>
+      <p> Phone: ${answer.information.phone}</p>
+      <p> Email: ${answer.information.email}</p>
+      <p> People: ${answer.persons}</p>
+      <p> We here at 10s hope you enjoy your stay!</p>
+      <p> If you have any questions please contact us on the information below.<p>
+      <p> Phone: 070-865-70-08 Email: group10restaurant@gmail.com</p>`,
     };
 
     contactEmail.sendMail(mail, (err) => {
