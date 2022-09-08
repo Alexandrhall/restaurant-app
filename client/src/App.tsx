@@ -8,6 +8,9 @@ import { Contact } from "./components/pages/Contact";
 import { About } from "./components/pages/About";
 import { Admin } from "./components/pages/Admin";
 import { ConfirmBooking } from "./components/pages/ConfirmBooking";
+import { Adminbookings } from "./components/pages/Adminbookings";
+import { SingleBooking } from "./components/pages/SingleBooking";
+import { AdminEditBooking } from "./components/pages/AdminEditBooking";
 
 function App() {
   return (
@@ -24,6 +27,12 @@ function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="*" element={<NotFound />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
+          <Route path="/admin/bookings" element={<Adminbookings />}></Route>
+          <Route path="/admin/bookings/:id" element={<SingleBooking />}></Route>
+          <Route
+            path="/admin/bookings/:id/edit"
+            element={<AdminEditBooking />}
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,64 @@
+.edit-booking-cnt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+
+  .edit-booking-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.15);
+    width: 380px;
+    height: 600px;
+    border-radius: 20px;
+  }
+  .edit-title {
+    font-size: 36px;
+    font-weight: lighter;
+  }
+
+  .edit-title-light {
+    font-size: 24px;
+    font-weight: lighter;
+  }
+
+  .edit-booking-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  label {
+    font-size: 16px;
+  }
+  .button-container {
+    margin-top: 15px;
+  }
+  .save-btn,
+  .back-btn {
+    margin: 15px;
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    width: 50px;
+  }
+
+  .booking-info-edit {
+    width: 235px;
+    height: 40px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .edit-booking-card {
+      width: 340px;
+      height: 640px;
+    }
+  }
+}

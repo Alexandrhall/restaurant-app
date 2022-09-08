@@ -4,8 +4,9 @@ import cors from "cors";
 import mongoose, { ObjectId } from "mongoose";
 import UserModel, { ICustomer } from "./models/Customer";
 import BookModel, { IBookings } from "./models/Bookings";
-import { connectDB, authInfo } from "./services/db";
-import nodemailer from "nodemailer";
+import { connectDB, authInfo} from "./services/db";
+import nodemailer from "nodemailer"
+import adminRouter from "./routes/adminRoutes";
 
 const app: Express = express();
 
@@ -24,10 +25,16 @@ app.use((req, res, next) => {
   next();
 });
 
-const contactEmail = nodemailer.createTransport({
-  service: "gmail",
-  auth: authInfo,
+app.use("/admin", adminRouter)
+
+app.get("/", async (req, res) => {
+  res.send("hello there");
 });
+
+const contactEmail = nodemailer.createTransport({
+  service: "gmaill",
+  auth: authInfo,
+})
 
 contactEmail.verify((err) => {
   if (err) {
