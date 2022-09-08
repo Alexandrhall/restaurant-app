@@ -11,6 +11,9 @@ import { ConfirmBooking } from "./components/pages/ConfirmBooking";
 import { Adminbookings } from "./components/pages/Adminbookings";
 import { SingleBooking } from "./components/pages/SingleBooking";
 import { AdminEditBooking } from "./components/pages/AdminEditBooking";
+import { DeleteBooking } from "./components/pages/DeleteBooking";
+import { Cancel } from "./components/pages/Cancel";
+
 
 function App() {
   return (
@@ -23,8 +26,10 @@ function App() {
             path="/booking/confirm/:id"
             element={<ConfirmBooking />}
           ></Route>
+          <Route path="/booking/delete/:id" element={<DeleteBooking />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/about" element={<About />}></Route>
+          <Route path="/cancel" element={<Cancel />}></Route>
           <Route path="*" element={<NotFound />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
           <Route path="/admin/bookings" element={<Adminbookings />}></Route>
