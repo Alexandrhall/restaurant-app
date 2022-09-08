@@ -30,7 +30,7 @@ export const Booking = () => {
             onClick={async (e) => {
               setTimeValue("");
             }}
-          >{`18:00 is fully booked`}</button>
+          >{`18:00 (Fully booked)`}</button>
         </>
       );
     } else {
@@ -65,7 +65,7 @@ export const Booking = () => {
             onClick={async (e) => {
               setTimeValue("");
             }}
-          >{`21:00 (fully booked)`}</button>
+          >{`21:00 (Full booked)`}</button>
         </>
       );
     } else {

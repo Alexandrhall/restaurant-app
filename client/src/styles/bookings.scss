@@ -65,7 +65,7 @@
       color: white;
     }
     .fullbooked {
-      color: orange;
+      color: rgba(249, 82, 56, 0.779);
     }
   }
 }
@@ -134,17 +134,17 @@ input {
   flex-wrap: wrap;
 }
 
-input[type="radio"] {
-  transform: scale(2.3);
-  height: 7%;
-  margin: 10px;
-  &:after {
-    background-color: red;
-  }
-  &:after:checked {
-    background-color: orange;
-  }
-}
+// input[type="radio"] {
+//   transform: scale(2.3);
+//   height: 7%;
+//   margin: 10px;
+//   &:after {
+//     background-color: red;
+//   }
+//   &:after:checked {
+//     background-color: orange;
+//   }
+// }
 
 label {
   font-size: 1.7rem;
