@@ -17,22 +17,28 @@ export const ConfirmBooking = () => {
   return (
     <>
       <div className="bookWrapper">
-        <h1 className="welcomeMsg">Thank you for your booking!</h1>
+        <h1 className="thankMsg">Thank you for your booking!</h1>
+        <h2> {`${objData?.information.name}`}</h2>
+        <p>{`You are welcome ${objData?.date} at ${objData?.time}`}</p>
         <div className="bookingInfo">
-          <h2> {`${objData?.information.name}`}</h2>
-          <p>{`You are welcome ${objData?.date} at ${objData?.time}`}</p>
-          <div>
-            <p>{`Your booking information:`}</p>
-            <p>{`Name: ${objData?.information.name}`}</p>
-            <p>{`Phone: +46${objData?.information.phone}`}</p>
-            <p>{`Email: ${objData?.information.email}`}</p>
-            <p>{`Persons: ${objData?.persons}`}</p>
+          <div className="infoMsg">
+            <div>
+              <p>{`Your booking information:`}</p>
+              <p>{`Name: ${objData?.information.name}`}</p>
+              <p>{`Phone: +46${objData?.information.phone}`}</p>
+              <p>{`Email: ${objData?.information.email}`}</p>
+              <p>{`Persons: ${objData?.persons}`}</p>
+            </div>
           </div>
-          <p>{`We here at 10´s hope you will enjoy your stay!`}</p>
-          <p>{`If you have any questions please contact us on the information below.`}</p>
           <div className="contact">
-            <p>{`Phone: 070-865-70-08`}</p>
-            <p>{`Email: group10restaurant@gmail.com`}</p>
+            <div>
+              <p>{`We here at 10´s hope you will enjoy your stay!`}</p>
+              <p>{`If you have any questions please contact us on the information below.`}</p>
+            </div>
+            <div>
+              <p>{`Phone: 070-865-70-08`}</p>
+              <p>{`Email: group10restaurant@gmail.com`}</p>
+            </div>
           </div>
         </div>
       </div>
