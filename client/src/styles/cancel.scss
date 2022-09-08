@@ -1,0 +1,17 @@
+.cancelWrap {
+  background-image: url("../assets/Adminimage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  div {
+    background-color: rgba(255, 255, 255, 0.15);
+    //   margin: 50px;
+    padding: 15px;
+    border-radius: 15px;
+  }
+}

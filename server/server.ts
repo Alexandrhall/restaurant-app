@@ -43,6 +43,12 @@ app.get("/booking/:id", async (req, res) => {
   res.send(answer);
 });
 
+app.delete("/booking/delete/:id", async (req, res) => {
+  const del = await BookModel.findByIdAndDelete(req.params.id);
+
+  res.send(del);
+});
+
 app.post("/booking", async (req, res) => {
   console.log(req.body);
 
@@ -72,6 +78,7 @@ app.post("/booking", async (req, res) => {
       <p> Phone: ${answer.information.phone}</p>
       <p> Email: ${answer.information.email}</p>
       <p> People: ${answer.persons}</p>
+      <p> If you want to cancel you reservation please click this link http://localhost:3000/booking/delete/${answer._id}<p>
       <p> We here at 10s hope you enjoy your stay!</p>
       <p> If you have any questions please contact us on the information below.</p>
       <p> Phone: 070-865-70-08 Email: group10restaurant@gmail.com</p>`,
@@ -106,6 +113,7 @@ app.post("/booking", async (req, res) => {
       <p> Phone: ${answer.information.phone}</p>
       <p> Email: ${answer.information.email}</p>
       <p> People: ${answer.persons}</p>
+      <p> If you want to cancel you reservation please click this link http://localhost:3000/booking/delete/${answer._id}<p>
       <p> We here at 10s hope you enjoy your stay!</p>
       <p> If you have any questions please contact us on the information below.</p>
       <p> Phone: 070-865-70-08 Email: group10restaurant@gmail.com</p>`,
