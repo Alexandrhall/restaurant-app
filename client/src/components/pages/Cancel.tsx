@@ -5,18 +5,20 @@ import "../../styles/cancel.scss";
 export const Cancel = () => {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     navigate("/");
-  //   }, 2500);
-  // }, []);
-
   return (
     <>
       <div className="cancelWrap">
         <div>
-          <h3>You have canceled you reservation </h3>
+          <h3>You have canceled your reservation </h3>
           <h3>See you next time!</h3>
+          <button
+            className="homeBut"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Go to home page
+          </button>
         </div>
       </div>
     </>

@@ -14,4 +14,24 @@
     padding: 15px;
     border-radius: 15px;
   }
+  .homeBut {
+    width: 30%;
+    align-items: flex-end;
+    color: white;
+    background-color: red;
+    border: 0;
+    padding: 12px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    cursor: pointer;
+  }
+  h3 {
+    margin-top: 0;
+    padding-top: 20px;
+    font-size: 36px;
+    font-weight: lighter;
+  }
 }
