@@ -147,4 +147,13 @@
     font-size: 16px;
     font-weight: lighter;
   }
+  @media only screen and (max-width: 768px) {
+    .contact-card {
+      width: 350px;
+    }
+
+    .contact-input {
+      width: 310px;
+    }
+  }
 }
