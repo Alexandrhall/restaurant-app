@@ -23,13 +23,13 @@ export const Adminbookings = () => {
             <p className="text-title">Phone</p>
           </div> */}
           <div className="listWrapper">
-            {bookings.map((booking) => {
+            {bookings.map((booking, i) => {
               return (
-                <div className="single-booking">
+                <div key={i} className="single-booking">
                   <p className="booking-mobile-text">Date:</p>
                   <p className="booking-info">{booking.date}</p>
                   <p className="booking-info">
-                    <p className="booking-mobile-text">Name & Email:</p>
+                    <span className="booking-mobile-text">Name & Email:</span>
                     {booking.information.name} <br></br>
                     {booking.information.email}
                   </p>
