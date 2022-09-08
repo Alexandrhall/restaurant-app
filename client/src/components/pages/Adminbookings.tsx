@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
-import { Booking } from "./Booking";
 import "../../styles/adminbookings.scss";
 
 export const Adminbookings = () => {

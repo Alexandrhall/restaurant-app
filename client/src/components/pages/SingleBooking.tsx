@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import "../../styles/singlebooking.scss";
-import { ObjectId } from "mongoose";
 import axios from "axios";
-import { Booking } from "./Booking";
 export const SingleBooking = () => {
   //   const [singleBooking, setSingleBooking] = useState<IBookings>({
   //     _id: ObjectId(),
@@ -21,8 +19,6 @@ export const SingleBooking = () => {
 
   const [singleBooking, setSinglebooking] = useState<IBookings>();
 
-  const params = useParams();
-
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -32,7 +28,7 @@ export const SingleBooking = () => {
       .then((response) => response.json())
       .then((data) => setSinglebooking(data));
     console.log(singleBooking);
-  }, []);
+  }, [id, singleBooking]);
 
   const deleteBooking = () => {
     axios

@@ -1,12 +1,11 @@
 import axios from "axios";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import "../../styles/editbooking.scss";
 export const AdminEditBooking = () => {
   const [singleBooking, setSingleBooking] = useState<IBookings>();
 
-  const params = useParams();
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ export const AdminEditBooking = () => {
     fetch("http://localhost:8000/admin/bookings/" + id)
       .then((response) => response.json())
       .then((data) => setSingleBooking(data));
-  }, []);
+  }, [id]);
 
   const editBooking = () => {
     axios
