@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import "../../styles/editbooking.scss";
@@ -17,10 +17,13 @@ export const AdminEditBooking = () => {
       .then((data) => setSingleBooking(data));
   }, []);
 
-  const editBooking = () => {
+  const editedBooking = () => {
     axios
       .put("http://localhost:8000/admin/bookings/" + id + "/edit")
-      .then(() => navigate("/admin/bookings"));
+      .then((resp) => {
+        console.log(resp.data);
+        navigate("/admin/bookings");
+      });
   };
 
   return (
@@ -84,7 +87,7 @@ export const AdminEditBooking = () => {
               <Link className="back-btn" to={"/admin/bookings"}>
                 Back
               </Link>
-              <div className="save-btn" onClick={editBooking}>
+              <div className="save-btn" onClick={editedBooking}>
                 Save
               </div>
             </div>
