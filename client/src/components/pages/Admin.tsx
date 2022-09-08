@@ -1,17 +1,9 @@
-// import React, { useEffect, useState } from "react";
-// import { IBookings } from "../../models/IBookings";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { IBookings } from "../../models/IBookings";
 import "../../styles/admin.scss";
 
 export const Admin = () => {
-  // const [bookings, setBookings] = useState<IBookings[]>([]);
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8000/admin/")
-  //     .then((response) => response.json())
-  //     .then((data) => setBookings(data));
-  //   console.log(setBookings);
-  // }),
-  //   [];
   return (
     <div className="admin-image">
       <div className="admin-login-cnt">
@@ -32,21 +24,14 @@ export const Admin = () => {
               name="password"
               placeholder="Your Password..."
             ></input>
-            <input
-              type="submit"
-              value="Logga in"
-              className="admin-login-btn"
-            ></input>
+            <div className="login-button-container">
+              <Link className="admin-login-btn" to={"/admin/bookings"}>
+                Login
+              </Link>
+            </div>
           </form>
         </div>
       </div>
     </div>
-
-    // Kanske kan använda det här sen
-    // <div className="listWrapper">
-    //   {bookings.map((booking) => {
-    //     return <div>{booking.time}</div>;
-    //   })}
-    // </div>
   );
 };
