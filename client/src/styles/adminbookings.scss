@@ -28,6 +28,7 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  margin-top: 15px;
   .single-booking {
     display: flex;
     justify-content: space-evenly;
@@ -42,6 +43,10 @@
       font-weight: lighter;
     }
   }
+}
+
+.booking-mobile-text {
+  display: none;
 }
 
 .editBtn-cnt {
@@ -72,5 +77,18 @@
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 20px;
     width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .booking-mobile-text {
+    display: block;
+  }
+  .single-booking {
+    flex-direction: column;
+  }
+
+  .bookings-card {
+    height: 100vh;
   }
 }
