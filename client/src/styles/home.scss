@@ -52,3 +52,9 @@ html {
     background-color: #db001d;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .hero-text {
+    font-size: 32px;
+  }
+}
