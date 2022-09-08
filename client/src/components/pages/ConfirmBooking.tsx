@@ -30,12 +30,12 @@ export const ConfirmBooking = () => {
               <p>{`Persons: ${objData?.persons}`}</p>
             </div>
           </div>
-          <div className="contact">
+          <div>
             <div>
               <p>{`We here at 10´s hope you will enjoy your stay!`}</p>
               <p>{`If you have any questions please contact us on the information below.`}</p>
             </div>
-            <div>
+            <div className="contact">
               <p>{`Phone: 070-865-70-08`}</p>
               <p>{`Email: group10restaurant@gmail.com`}</p>
             </div>
