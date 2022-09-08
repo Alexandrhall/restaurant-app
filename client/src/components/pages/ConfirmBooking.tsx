@@ -9,7 +9,7 @@ export const ConfirmBooking = () => {
   const [objData, setObjData] = useState<IBookingAnswer>();
 
   useEffect(() => {
-    axios("http://localhost:8000/booking/" + params.id).then((resp) => {
+    axios.post("http://localhost:8000/booking/" + params.id).then((resp) => {
       setObjData(resp.data);
     });
   }, [params.id]);
