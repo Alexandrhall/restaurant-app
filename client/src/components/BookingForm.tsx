@@ -204,7 +204,7 @@ export const BookingForm = (props: IBookFormProps) => {
             <p>{errObject.dateErr}</p>
           </div>
           <div>
-            <label htmlFor="persons">Persons</label>
+            <label htmlFor="persons">Persons (1-6)</label>
             <input
               type="number"
               name="persons"
@@ -277,7 +277,7 @@ export const BookingForm = (props: IBookFormProps) => {
             <input type="text" name="date" value={props.date} readOnly />
           </div>
           <div>
-            <label htmlFor="persons">Persons</label>
+            <label htmlFor="persons">Persons (1-6)</label>
             <input
               type="number"
               name="persons"
