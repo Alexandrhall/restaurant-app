@@ -155,11 +155,15 @@ label {
     width: 380px;
     margin: 0 auto;
   }
+  .calAndBut {
+    margin-bottom: 50px;
+  }
 }
 
 @media screen and (max-width: 1030px) {
   .calAndBut {
     flex-direction: column;
+    margin-bottom: 0;
   }
   .react-calendar {
     order: 1;
