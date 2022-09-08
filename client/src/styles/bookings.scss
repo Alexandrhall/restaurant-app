@@ -65,7 +65,7 @@
       color: white;
     }
     .fullbooked {
-      color: red;
+      color: orange;
     }
   }
 }
@@ -108,7 +108,10 @@ input {
     width: 50%;
     align-items: flex-end;
     color: white;
-    background-color: red;
+    // background-color: red;
+    // background-color: rgba(255, 69, 0);
+    // background-color: #4caf50;
+    background-color: #ff0022;
     border: 0;
   }
   div {
