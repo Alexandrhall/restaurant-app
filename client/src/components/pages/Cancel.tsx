@@ -5,11 +5,11 @@ import "../../styles/cancel.scss";
 export const Cancel = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setInterval(() => {
-      navigate("/");
-    }, 2500);
-  });
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     navigate("/");
+  //   }, 2500);
+  // }, []);
 
   return (
     <>
