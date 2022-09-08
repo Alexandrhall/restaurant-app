@@ -8,6 +8,10 @@
   margin-left: 28px;
 }
 
+.contact-mobile-text {
+  display: none;
+}
+
 input[type="text"],
 input[type="password"],
 select,
@@ -55,4 +59,35 @@ input[type="submit"]:hover {
 .contactImage {
   width: 331px;
   height: 496px;
+}
+
+@media only screen and (max-width: 768px) {
+  .image-box {
+    width: 100%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .contact-form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .con-form {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .contact-mobile-text {
+    font-size: 32px;
+    display: block;
+    font-weight: lighter;
+  }
 }

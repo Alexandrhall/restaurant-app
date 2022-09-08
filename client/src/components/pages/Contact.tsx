@@ -14,8 +14,9 @@ export const Contact = () => {
             alt="our restaurant"
           />
         </div>
+        <h2 className="contact-mobile-text"> Send us a mail</h2>
         <div className="contact-form">
-          <form action="" method="post">
+          <form className="con-form" action="" method="post">
             <input
               className="contact-input"
               type="text"
