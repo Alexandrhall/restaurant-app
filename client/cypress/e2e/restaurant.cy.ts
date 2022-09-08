@@ -9,3 +9,5 @@ describe("Restaurant testing", () => {
     cy.get("p").contains("is incorrect");
   });
 });
+
+export {};

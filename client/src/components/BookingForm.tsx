@@ -170,9 +170,6 @@ export const BookingForm = (props: IBookFormProps) => {
       });
     } else {
       return;
-      // console.log(errObject);
-      // console.log(Object.keys(errObject).length);
-      // console.log(sendData);
     }
   };
 
