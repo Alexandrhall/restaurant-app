@@ -1,8 +1,18 @@
 .react-calendar {
-  margin: 0 auto;
+  // margin: 0 auto;
   margin-top: 20px;
+  margin-bottom: 50px;
   color: #282c34;
   border-radius: 10px;
+  // margin-left: 40px;
+  order: 2;
+}
+
+.bookBack {
+  background-image: url("../assets/Adminimage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
 .react-calendar__navigation {
@@ -29,4 +39,59 @@ input {
   margin-bottom: 16px;
   resize: vertical;
   cursor: pointer;
+}
+
+.formWrap {
+  display: flex;
+  margin: 0 auto;
+  order: 3;
+  // flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 60%;
+  align-items: center;
+  height: 250px;
+  input {
+    width: 300px;
+  }
+  button {
+    width: 50%;
+    align-items: flex-end;
+    // flex-grow: 1;
+    color: white;
+    background-color: red;
+    border: 0;
+  }
+}
+
+.bookWrap {
+  display: flex;
+  flex-wrap: wrap;
+  .radioBut {
+    // height: 50%;
+    display: flex;
+    width: 55%;
+    justify-content: flex-end;
+    align-items: center;
+    order: 1;
+    padding-right: 50px;
+  }
+}
+
+input[type="radio"] {
+  transform: scale(2.3);
+  // width: 7%;
+  height: 7%;
+  margin: 10px;
+  &:after {
+    background-color: red;
+  }
+  &:after:checked {
+    background-color: orange;
+  }
+}
+
+label {
+  font-size: 1.7rem;
+  // margin-right: 20px;
 }

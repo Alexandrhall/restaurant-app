@@ -109,31 +109,43 @@ export const Booking = () => {
 
   return (
     <>
-      <h1>Booking page</h1>
-      <Calendar
-        onChange={(date: Date) => {
-          setDateValue(date);
-          setShowForm(true);
-          setTimeValue("");
-        }}
-        value={dateValue}
-        minDate={subDays(startDate, 0)}
-        maxDate={addDays(startDate, 60)}
-      />
+      <div className="bookBack">
+        <h1>Booking page</h1>
+        <div className="bookWrap">
+          <Calendar
+            onChange={(date: Date) => {
+              setDateValue(date);
+              setShowForm(true);
+              setTimeValue("");
+            }}
+            value={dateValue}
+            minDate={subDays(startDate, 0)}
+            maxDate={addDays(startDate, 60)}
+          />
 
-      {showForm ? (
-        <>
-          <div>{renderRadioHtml()}</div>
-          <div>
+          <div className="radioBut">{renderRadioHtml()}</div>
+          <div className="formWrap">
             <BookingForm
               date={dateValue.toLocaleDateString("sv-SE")}
               time={timeValue}
             />
           </div>
-        </>
-      ) : (
-        <></>
-      )}
+        </div>
+
+        {/* {showForm ? (
+          <>
+            <div className="radioBut">{renderRadioHtml()}</div>
+            <div className="formWrap">
+              <BookingForm
+                date={dateValue.toLocaleDateString("sv-SE")}
+                time={timeValue}
+              />
+            </div>
+          </>
+        ) : (
+          <></>
+        )} */}
+      </div>
     </>
   );
 };

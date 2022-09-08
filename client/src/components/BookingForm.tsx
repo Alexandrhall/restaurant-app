@@ -186,6 +186,15 @@ export const BookingForm = (props: IBookFormProps) => {
       <input type="text" name="time" value={props.time} readOnly />
       <input type="text" name="date" value={props.date} readOnly />
       <input
+        type="number"
+        name="persons"
+        placeholder="Persons"
+        max={6}
+        min={1}
+        value={valState.persons}
+        onChange={valOnChange}
+      />
+      <input
         type="text"
         name="name"
         placeholder="First Name"
@@ -204,15 +213,6 @@ export const BookingForm = (props: IBookFormProps) => {
         name="email"
         placeholder="Email"
         value={valState.email}
-        onChange={valOnChange}
-      />
-      <input
-        type="number"
-        name="persons"
-        placeholder="Persons"
-        max={6}
-        min={1}
-        value={valState.persons}
         onChange={valOnChange}
       />
 
