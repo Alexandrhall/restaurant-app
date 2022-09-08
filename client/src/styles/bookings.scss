@@ -5,18 +5,58 @@
   border-radius: 10px;
   order: 2;
   font-family: "Segoe UI";
+  width: 40%;
 }
 
 .bookBack {
   background-image: url("../assets/Adminimage.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 850px;
 }
 
 .react-calendar__navigation {
   margin-top: 5px;
   margin-bottom: 3px;
+}
+
+.calAndBut {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  width: 60%;
+  justify-content: space-evenly;
+  .radioBut {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: space-evenly;
+    align-items: center;
+    order: 1;
+    label {
+      color: white;
+      font-family: "Segoe UI";
+    }
+    button {
+      border: none;
+      color: black;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 15px;
+      border-radius: 5px;
+      width: 204px;
+      height: 49px;
+    }
+    .checked {
+      background-color: #4caf50;
+      color: white;
+    }
+    .fullbooked {
+      color: red;
+    }
+  }
 }
 
 input {
@@ -78,18 +118,6 @@ input {
 .bookWrap {
   display: flex;
   flex-wrap: wrap;
-  .radioBut {
-    display: flex;
-    width: 55%;
-    justify-content: flex-end;
-    align-items: center;
-    order: 1;
-    padding-right: 50px;
-    label {
-      color: white;
-      font-family: "Segoe UI";
-    }
-  }
 }
 
 input[type="radio"] {
@@ -110,4 +138,31 @@ label {
 
 .fullBook {
   text-decoration: line-through;
+}
+
+@media screen and (max-width: 1600px) {
+  .bookWrap {
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+  .react-calendar {
+    width: 380px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .calAndBut {
+    flex-direction: column;
+  }
+  .react-calendar {
+    order: 1;
+  }
+  .radioBut {
+    order: 2;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    justify-content: space-between;
+    height: 150px;
+  }
 }

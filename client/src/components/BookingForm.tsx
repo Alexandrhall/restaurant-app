@@ -1,7 +1,6 @@
 import axios from "axios";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { NULL } from "sass";
 import validator from "validator";
 import { IBookingAnswer } from "../models/IBookings";
 import { IvalChange, IValidate } from "../models/IValidate";

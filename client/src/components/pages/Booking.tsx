@@ -15,41 +15,41 @@ export const Booking = () => {
   const [timeValue, setTimeValue] = useState<string>("");
   const startDate: Date = new Date();
 
-  const renderRadioHtml = () => {
+  const renderButtonHtml = () => {
     let eightHtml: JSX.Element = <></>;
     let twentHtml: JSX.Element = <></>;
 
     if (15 - eightTeen.length <= 0) {
       eightHtml = (
         <>
-          <input
-            type="radio"
+          <button
             name="time"
             id="18"
-            value={"18:00"}
+            className="fullbooked"
             disabled
             onClick={async (e) => {
               setTimeValue("");
             }}
-          />
-          <label className="fullBook" htmlFor="18">
-            18:00 is fullbooked
-          </label>
+          >{`18:00 is fullbooked`}</button>
         </>
       );
     } else {
       eightHtml = (
         <>
-          <input
-            type="radio"
-            name="time"
+          <button
             id="18"
+            name="time"
             value={"18:00"}
             onClick={async (e) => {
               setTimeValue(e.currentTarget.value);
+              document.getElementById("18")?.classList.add("checked");
+              if (
+                document.getElementById("21")?.classList.contains("checked")
+              ) {
+                document.getElementById("21")?.classList.remove("checked");
+              }
             }}
-          />
-          <label htmlFor="18">18:00 ({15 - eightTeen.length} available)</label>
+          >{`18:00 (${15 - eightTeen.length} available)`}</button>
         </>
       );
     }
@@ -57,34 +57,34 @@ export const Booking = () => {
     if (15 - twentyOne.length <= 0) {
       twentHtml = (
         <>
-          <input
-            type="radio"
+          <button
             name="time"
             id="21"
-            value={"21:00"}
+            className="fullbooked"
             disabled
             onClick={async (e) => {
               setTimeValue("");
             }}
-          />
-          <label className="fullBook" htmlFor="21">
-            21:00 is fullbooked
-          </label>
+          >{`21:00 is fullbooked`}</button>
         </>
       );
     } else {
       twentHtml = (
         <>
-          <input
-            type="radio"
-            name="time"
+          <button
             id="21"
+            name="time"
             value={"21:00"}
             onClick={async (e) => {
               setTimeValue(e.currentTarget.value);
+              document.getElementById("21")?.classList.add("checked");
+              if (
+                document.getElementById("18")?.classList.contains("checked")
+              ) {
+                document.getElementById("18")?.classList.remove("checked");
+              }
             }}
-          />
-          <label htmlFor="21">21:00 ({15 - twentyOne.length} available)</label>
+          >{`21:00 (${15 - twentyOne.length} available)`}</button>
         </>
       );
     }
@@ -115,17 +115,21 @@ export const Booking = () => {
       <div className="bookBack">
         <h1>Booking page</h1>
         <div className="bookWrap">
-          <Calendar
-            onChange={(date: Date) => {
-              setDateValue(date);
-              setTimeValue("");
-            }}
-            value={dateValue}
-            minDate={subDays(startDate, 0)}
-            maxDate={addDays(startDate, 60)}
-          />
+          <div className="calAndBut">
+            <Calendar
+              onChange={(date: Date) => {
+                setDateValue(date);
+                setTimeValue("");
+                document.getElementById("18")?.classList.remove("checked");
+                document.getElementById("21")?.classList.remove("checked");
+              }}
+              value={dateValue}
+              minDate={subDays(startDate, 0)}
+              maxDate={addDays(startDate, 60)}
+            />
+            <div className="radioBut">{renderButtonHtml()}</div>
+          </div>
 
-          <div className="radioBut">{renderRadioHtml()}</div>
           <div className="formWrap">
             <BookingForm
               date={dateValue.toLocaleDateString("sv-SE")}
