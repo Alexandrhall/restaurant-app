@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import "../../styles/editbooking.scss";
@@ -14,6 +14,7 @@ export const AdminEditBooking = () => {
       .then((response) => response.json())
       .then((data) => setSingleBooking(data));
   }, []);
+
   return (
     <div className="background">
       <div className="edit-booking-cnt">

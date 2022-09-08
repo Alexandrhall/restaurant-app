@@ -33,6 +33,8 @@ adminRouter.get("/bookings/:id/edit", async (req, res) => {
     email: req.body.email,
     phone: req.body.phone,
     date: req.body.date,
+    time: req.body.time,
+    persons: req.body.persons,
   };
 
   await BookModel.updateOne({ _id: id }, { $set: editBooking });
