@@ -1,11 +1,10 @@
 .react-calendar {
-  // margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 50px;
   color: #282c34;
   border-radius: 10px;
-  // margin-left: 40px;
   order: 2;
+  font-family: "Segoe UI";
 }
 
 .bookBack {
@@ -45,22 +44,33 @@ input {
   display: flex;
   margin: 0 auto;
   order: 3;
-  // flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 60%;
   align-items: center;
   height: 250px;
+  max-width: 1040px;
   input {
     width: 300px;
   }
   button {
     width: 50%;
     align-items: flex-end;
-    // flex-grow: 1;
     color: white;
     background-color: red;
     border: 0;
+  }
+  div {
+    height: 130px;
+  }
+  div p {
+    font-size: 12pt;
+    color: red;
+    font-weight: lighter;
+  }
+  div label {
+    display: block;
+    font-size: 10pt;
   }
 }
 
@@ -68,19 +78,21 @@ input {
   display: flex;
   flex-wrap: wrap;
   .radioBut {
-    // height: 50%;
     display: flex;
     width: 55%;
     justify-content: flex-end;
     align-items: center;
     order: 1;
     padding-right: 50px;
+    label {
+      color: white;
+      font-family: "Segoe UI";
+    }
   }
 }
 
 input[type="radio"] {
   transform: scale(2.3);
-  // width: 7%;
   height: 7%;
   margin: 10px;
   &:after {
@@ -94,4 +106,8 @@ input[type="radio"] {
 label {
   font-size: 1.7rem;
   // margin-right: 20px;
+}
+
+.fullBook {
+  text-decoration: line-through;
 }

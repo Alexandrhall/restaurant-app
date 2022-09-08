@@ -33,7 +33,9 @@ export const Booking = () => {
               setTimeValue("");
             }}
           />
-          <label htmlFor="18">18:00 is fullbooked</label>
+          <label className="fullBook" htmlFor="18">
+            18:00 is fullbooked
+          </label>
         </>
       );
     } else {
@@ -66,7 +68,9 @@ export const Booking = () => {
               setTimeValue("");
             }}
           />
-          <label htmlFor="21">21:00 is fullbooked</label>
+          <label className="fullBook" htmlFor="21">
+            21:00 is fullbooked
+          </label>
         </>
       );
     } else {

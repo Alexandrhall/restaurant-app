@@ -1,0 +1,23 @@
+.bookingInfo {
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  h2 {
+    flex-grow: 1;
+  }
+}
+
+.bookWrapper {
+  background-image: url("../assets/Adminimage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+}
