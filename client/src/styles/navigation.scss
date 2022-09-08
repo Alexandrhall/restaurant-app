@@ -1,5 +1,7 @@
 .menuWrapper {
   display: flex;
+  position: absolute;
+  z-index: 1;
 }
 .menuText {
   text-decoration: none;

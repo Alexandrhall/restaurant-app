@@ -13,6 +13,12 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 850px;
+  h1 {
+    margin-top: 0;
+    padding-top: 30px;
+    font-size: 36px;
+    font-weight: lighter;
+  }
 }
 
 .react-calendar__navigation {
