@@ -92,8 +92,9 @@ app.post("/booking", async (req, res) => {
     email: req.body.email,
   };
 
-  if (await UserModel.findOne(userInfo)) {
-    const user: mongoose.Document | null = await UserModel.findOne(userInfo);
+  const user: mongoose.Document | null = await UserModel.findOne(userInfo);
+
+  if (user) {
     const answer = await BookModel.create({
       information: user,
       persons: parseInt(req.body.persons),
@@ -128,7 +129,6 @@ app.post("/booking", async (req, res) => {
     res.send(answer);
   } else {
     await UserModel.create(userInfo);
-    const user: mongoose.Document | null = await UserModel.findOne(userInfo);
     const answer = await BookModel.create({
       information: user,
       persons: parseInt(req.body.persons),
