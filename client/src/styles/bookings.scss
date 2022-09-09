@@ -12,7 +12,7 @@
   background-image: url("../assets/Adminimage.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 850px;
+  height: 100vh;
   // background-image: url("../assets/Adminimage.png");
   // position: relative;
   // background-position: center;
@@ -169,6 +169,9 @@ label {
 }
 
 @media screen and (max-width: 1030px) {
+  .bookBack {
+    height: 165vh;
+  }
   .calAndBut {
     flex-direction: column;
     margin-bottom: 0;
