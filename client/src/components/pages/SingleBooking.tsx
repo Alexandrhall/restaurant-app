@@ -28,7 +28,7 @@ export const SingleBooking = () => {
       .then((response) => response.json())
       .then((data) => setSinglebooking(data));
     console.log(singleBooking);
-  }, [id, singleBooking]);
+  }, [id]);
 
   const deleteBooking = () => {
     axios

@@ -17,7 +17,6 @@ export const Adminbookings = () => {
       )
       .then((resp) => {
         setBookings(resp.data);
-        console.log(resp.data);
       });
   }, [dateValue]);
 

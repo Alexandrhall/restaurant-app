@@ -29,31 +29,36 @@ describe("Restaurant testing", () => {
           });
       });
   });
-  i cy.visit("http://localhost:3000/");
 
-  cy.get(".login-button").click();
+  it("it should get to edit booking from admin page", () => {
+    cy.visit("http://localhost:3000/");
 
-  cy.get(".admin-login-btn").click();
+    cy.get(".login-button").click();
 
-  cy.get(".background")
-    .parent()
-    .within(() => {
-      cy.get(".bookings-container")
-        .parent()
-        .within(() => {
-          cy.get(".bookings-card")
-            .parent()
-            .within(() => {
-              cy.get(".listWrapper").parent().within(() => {
-                cy.get(".single-booking").parent().within(() => {
-                  cy.get("")
-                })
+    cy.get(".admin-login-btn").click();
+
+    cy.get(".background")
+      .parent()
+      .within(() => {
+        cy.get(".bookings-container")
+          .parent()
+          .within(() => {
+            cy.get(".bookings-card")
+              .parent()
+              .within(() => {
+                cy.get(".listWrapper")
+                  .parent()
+                  .within(() => {
+                    cy.get(".single-booking")
+                      .parent()
+                      .within(() => {
+                        cy.get(".editBtn-cnt").click();
+                      });
+                  });
               });
-            });
-        });
-    });
+          });
+      });
   });
-  it("it should", () => {});
   it("it should", () => {});
 });
 
