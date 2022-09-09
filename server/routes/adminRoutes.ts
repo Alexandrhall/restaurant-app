@@ -29,17 +29,16 @@ adminRouter.delete("/bookings/:id/delete", async (req, res) => {
 
 adminRouter.put("/bookings/:id/edit", async (req, res) => {
   const id = req.params.id;
-  const editBooking = {
-    name: "Sven-Johan",
+  const editBooking = await BookModel.findByIdAndUpdate(id, {
+    name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
     date: req.body.date,
     time: req.body.time,
     persons: req.body.persons,
-  };
+  });
 
-  await BookModel.updateOne({ _id: id }, { $set: editBooking });
-  console.log(editBooking);
+  res.send(editBooking);
 });
 
 export default adminRouter;
