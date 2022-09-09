@@ -34,7 +34,7 @@ adminRouter.put("/bookings/:id/edit", async (req, res) => {
     phone: req.body.phone,
     date: req.body.date,
     time: req.body.time,
-    persons: 5,
+    persons: req.body.persons,
   });
 
   res.send(editBooking);

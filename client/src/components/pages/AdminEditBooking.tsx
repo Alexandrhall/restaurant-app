@@ -84,7 +84,7 @@ export const AdminEditBooking = () => {
 
   const editedBooking = () => {
     axios
-      .put("http://localhost:8000/admin/bookings/" + id + "/edit")
+      .put("http://localhost:8000/admin/bookings/" + id + "/edit", valState)
       .then((resp) => {
         console.log(resp.data);
         navigate("/admin/bookings");
