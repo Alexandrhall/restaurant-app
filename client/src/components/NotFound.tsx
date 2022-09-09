@@ -1,10 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/notfound.scss";
 
 export const NotFound = () => {
+  const navigate = useNavigate();
   return (
     <>
-      Hoppsan! Nu blev det fel. <br />
-      <Link to={"/"}>Klicka här får gå tillbaka</Link>
+      <div className="notFoundWrap">
+        <div>
+          <h3> Oops! now you clicked wrong</h3> <br />
+          <button
+            className="homeBut"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Go to home page
+          </button>
+        </div>
+      </div>
     </>
   );
 };
