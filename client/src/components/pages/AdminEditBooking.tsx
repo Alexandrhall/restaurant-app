@@ -4,26 +4,49 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import "../../styles/editbooking.scss";
 
-export interface something {
-  name: string;
+export interface changedBooking {
   persons: number;
+  information: {
+    name: string;
+    email: string;
+    phone: string;
+  };
   date: string;
   time: string;
+}
+export interface newBooking {
+  persons: number;
+  name: string;
   email: string;
   phone: string;
+  date: string;
+  time: string;
 }
+
 export const AdminEditBooking = () => {
   const [singleBooking, setSingleBooking] = useState<IBookings>();
 
   const initialstate = {
-    name: "",
     persons: 0,
     date: "",
     time: "",
-    email: "",
-    phone: "",
+    information: {
+      name: "",
+      phone: "",
+      email: "",
+    },
   };
-  const [valState, setValState] = useState<something>(initialstate);
+  const initialstateTwo = {
+    persons: 0,
+    date: "",
+    time: "",
+    name: "",
+    phone: "",
+    email: "",
+  };
+  const [valState, setValState] = useState<newBooking>(initialstateTwo);
+
+  const [valStateTwo, setValStateTwo] = useState<changedBooking>(initialstate);
 
   const params = useParams();
   const { id } = useParams();
@@ -32,9 +55,32 @@ export const AdminEditBooking = () => {
 
   useEffect(() => {
     axios.get("http://localhost:8000/admin/bookings/" + id).then((resp) => {
-      // valState(resp.data);
+      const data = resp.data;
+      setValState({
+        date: data.date,
+        time: data.time,
+        persons: data.persons,
+        name: data.information.name,
+        phone: data.information.phone,
+        email: data.information.email,
+      });
     });
   }, []);
+
+  useEffect(
+    () =>
+      setValStateTwo({
+        date: valState.date,
+        time: valState.time,
+        persons: valState.persons,
+        information: {
+          name: valState.name,
+          phone: valState.phone,
+          email: valState.email,
+        },
+      }),
+    [valState]
+  );
 
   const editedBooking = () => {
     axios
@@ -46,6 +92,13 @@ export const AdminEditBooking = () => {
   };
 
   const valOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValState((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const updateTime = (e: ChangeEvent<HTMLSelectElement>) => {
     setValState((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -65,9 +118,12 @@ export const AdminEditBooking = () => {
               name="persons"
               value={valState.persons}
               onChange={valOnChange}
+              min="1"
+              max="6"
             ></input>
             <label htmlFor="time">Time</label>
             <select
+              onChange={updateTime}
               className="booking-info-edit"
               name="time"
               value={valState.time}
@@ -84,6 +140,7 @@ export const AdminEditBooking = () => {
               type="text"
               name="date"
               value={valState.date}
+              onChange={valOnChange}
             ></input>
 
             <span className="edit-title-light">Edit personal information</span>
