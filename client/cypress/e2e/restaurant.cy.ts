@@ -8,7 +8,7 @@ describe("Restaurant testing", () => {
 
     cy.get("p").contains("is incorrect");
   });
-  it("it should click to admin page and see booking info", () => {
+  it("it should click to admin page and see booking info find listwrapper", () => {
     cy.visit("http://localhost:3000/");
 
     cy.get(".login-button").click();
@@ -16,13 +16,42 @@ describe("Restaurant testing", () => {
     cy.get(".admin-login-btn").click();
 
     cy.get(".background")
-      .get(".bookings-container")
-      .get(".booking-card")
-      .get(".listWrapper")
-      .should("have.class", "listWrapper");
+      .parent()
+      .within(() => {
+        cy.get(".bookings-container")
+          .parent()
+          .within(() => {
+            cy.get(".bookings-card")
+              .parent()
+              .within(() => {
+                cy.get(".listWrapper");
+              });
+          });
+      });
   });
-  it("it should", () => {
-    cy.visit("http://localhost:3000");
+  i cy.visit("http://localhost:3000/");
+
+  cy.get(".login-button").click();
+
+  cy.get(".admin-login-btn").click();
+
+  cy.get(".background")
+    .parent()
+    .within(() => {
+      cy.get(".bookings-container")
+        .parent()
+        .within(() => {
+          cy.get(".bookings-card")
+            .parent()
+            .within(() => {
+              cy.get(".listWrapper").parent().within(() => {
+                cy.get(".single-booking").parent().within(() => {
+                  cy.get("")
+                })
+              });
+            });
+        });
+    });
   });
   it("it should", () => {});
   it("it should", () => {});
