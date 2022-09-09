@@ -7,7 +7,6 @@ const adminRouter = Router();
 
 adminRouter.get("/bookings", async (req, res) => {
   const getBookings = await BookModel.find({ date: req.query.date });
-  console.log(getBookings);
   res.send(getBookings);
 });
 

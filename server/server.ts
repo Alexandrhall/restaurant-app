@@ -84,8 +84,6 @@ app.delete("/booking/delete/:id", async (req, res) => {
 });
 
 app.post("/booking", async (req, res) => {
-  console.log(req.body);
-
   const userInfo: object = {
     name: req.body.name,
     phone: req.body.phone,
