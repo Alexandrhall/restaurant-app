@@ -1,27 +1,38 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { IBookings } from "../../models/IBookings";
 import "../../styles/adminbookings.scss";
+import ReactDatePicker from "react-datepicker";
 
 export const Adminbookings = () => {
   const [bookings, setBookings] = useState<IBookings[]>([]);
+  const [dateValue, setDateValue] = useState<Date>(new Date());
 
   useEffect(() => {
-    fetch("http://localhost:8000/admin/bookings")
-      .then((response) => response.json())
-      .then((data) => setBookings(data));
-  }, []);
+    axios
+      .get(
+        "http://localhost:8000/admin/bookings?date=" +
+          dateValue.toLocaleDateString("sv-SE")
+      )
+      .then((resp) => {
+        setBookings(resp.data);
+        console.log(resp.data);
+      });
+  }, [dateValue]);
+
   return (
     <div className="background">
       <div className="bookings-container">
         <div className="bookings-card">
-          {/* <div className="text-container">
-            <p className="text-title">Date</p>
-            <p className="text-title">Name: & E-mail</p>
-            <p className="text-title">Amount</p>
-            <p className="text-title">Time</p>
-            <p className="text-title">Phone</p>
-          </div> */}
+          <h3>Choose a Date:</h3>
+          <ReactDatePicker
+            popperPlacement="bottom"
+            selected={dateValue}
+            onChange={(date: Date) => {
+              setDateValue(date);
+            }}
+          ></ReactDatePicker>
           <div className="listWrapper">
             {bookings.map((booking, i) => {
               return (
