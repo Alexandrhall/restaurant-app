@@ -14,7 +14,7 @@ export const AdminEditBooking = () => {
     fetch("http://localhost:8000/admin/bookings/" + id)
       .then((response) => response.json())
       .then((data) => setSingleBooking(data));
-  }, []);
+  }, [id]);
 
   const editBooking = () => {
     axios
